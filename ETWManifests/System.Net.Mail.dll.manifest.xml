@@ -1,0 +1,293 @@
+<instrumentationManifest xmlns="http://schemas.microsoft.com/win/2004/08/events">
+ <instrumentation xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events">
+  <events xmlns="http://schemas.microsoft.com/win/2004/08/events">
+<provider name="Microsoft-System-Net-Mail" guid="{42c8027b-f048-58d2-537d-a4a9d5ee7038}" resourceFileName="" messageFileName="" symbol="MicrosoftSystemNetMail">
+ <tasks>
+  <task name="OperationReturnedSomething" message="$(string.task_OperationReturnedSomething)" value="65518"/>
+  <task name="AcceptSecurityContext" message="$(string.task_AcceptSecurityContext)" value="65519"/>
+  <task name="SecurityContextInputBuffers" message="$(string.task_SecurityContextInputBuffers)" value="65520"/>
+  <task name="InitializeSecurityContext" message="$(string.task_InitializeSecurityContext)" value="65522"/>
+  <task name="AcquireCredentialsHandle" message="$(string.task_AcquireCredentialsHandle)" value="65523"/>
+  <task name="AcquireDefaultCredential" message="$(string.task_AcquireDefaultCredential)" value="65524"/>
+  <task name="SspiPackageNotFound" message="$(string.task_SspiPackageNotFound)" value="65525"/>
+  <task name="EnumerateSecurityPackages" message="$(string.task_EnumerateSecurityPackages)" value="65526"/>
+  <task name="CriticalFailure" message="$(string.task_CriticalFailure)" value="65528"/>
+  <task name="ErrorMessage" message="$(string.task_ErrorMessage)" value="65529"/>
+  <task name="Info" message="$(string.task_Info)" value="65530"/>
+  <task name="Associate" message="$(string.task_Associate)" value="65531"/>
+  <task name="Exit" message="$(string.task_Exit)" value="65532"/>
+  <task name="Enter" message="$(string.task_Enter)" value="65533"/>
+  <task name="EventSourceMessage" message="$(string.task_EventSourceMessage)" value="65534"/>
+ </tasks>
+ <maps>
+  <valueMap name="CredentialUse">
+   <map value="0x1" message="$(string.map_CredentialUse.SECPKG_CRED_INBOUND)"/>
+   <map value="0x2" message="$(string.map_CredentialUse.SECPKG_CRED_OUTBOUND)"/>
+   <map value="0x3" message="$(string.map_CredentialUse.SECPKG_CRED_BOTH)"/>
+  </valueMap>
+  <bitMap name="ContextFlags">
+   <map value="0x1" message="$(string.map_ContextFlags.Delegate)"/>
+   <map value="0x2" message="$(string.map_ContextFlags.MutualAuth)"/>
+   <map value="0x4" message="$(string.map_ContextFlags.ReplayDetect)"/>
+   <map value="0x8" message="$(string.map_ContextFlags.SequenceDetect)"/>
+   <map value="0x10" message="$(string.map_ContextFlags.Confidentiality)"/>
+   <map value="0x20" message="$(string.map_ContextFlags.UseSessionKey)"/>
+   <map value="0x100" message="$(string.map_ContextFlags.AllocateMemory)"/>
+   <map value="0x800" message="$(string.map_ContextFlags.Connection)"/>
+   <map value="0x4000" message="$(string.map_ContextFlags.InitExtendedError)"/>
+   <map value="0x8000" message="$(string.map_ContextFlags.AcceptExtendedError)"/>
+   <map value="0x8000" message="$(string.map_ContextFlags.InitStream)"/>
+   <map value="0x10000" message="$(string.map_ContextFlags.AcceptStream)"/>
+   <map value="0x10000" message="$(string.map_ContextFlags.InitIntegrity)"/>
+   <map value="0x20000" message="$(string.map_ContextFlags.AcceptIntegrity)"/>
+   <map value="0x80000" message="$(string.map_ContextFlags.InitManualCredValidation)"/>
+   <map value="0x80" message="$(string.map_ContextFlags.InitUseSuppliedCreds)"/>
+   <map value="0x20000" message="$(string.map_ContextFlags.InitIdentify)"/>
+   <map value="0x80000" message="$(string.map_ContextFlags.AcceptIdentify)"/>
+   <map value="0x4000000" message="$(string.map_ContextFlags.ProxyBindings)"/>
+   <map value="0x10000000" message="$(string.map_ContextFlags.AllowMissingBindings)"/>
+   <map value="0x20000000" message="$(string.map_ContextFlags.UnverifiedTargetName)"/>
+  </bitMap>
+  <valueMap name="SECURITY_STATUS">
+   <map value="0x0" message="$(string.map_SECURITY_STATUS.OK)"/>
+   <map value="0x90312" message="$(string.map_SECURITY_STATUS.ContinueNeeded)"/>
+   <map value="0x90313" message="$(string.map_SECURITY_STATUS.CompleteNeeded)"/>
+   <map value="0x90314" message="$(string.map_SECURITY_STATUS.CompAndContinue)"/>
+   <map value="0x90317" message="$(string.map_SECURITY_STATUS.ContextExpired)"/>
+   <map value="0x90320" message="$(string.map_SECURITY_STATUS.CredentialsNeeded)"/>
+   <map value="0x90321" message="$(string.map_SECURITY_STATUS.Renegotiate)"/>
+   <map value="0xffffffff80090300" message="$(string.map_SECURITY_STATUS.OutOfMemory)"/>
+   <map value="0xffffffff80090301" message="$(string.map_SECURITY_STATUS.InvalidHandle)"/>
+   <map value="0xffffffff80090302" message="$(string.map_SECURITY_STATUS.Unsupported)"/>
+   <map value="0xffffffff80090303" message="$(string.map_SECURITY_STATUS.TargetUnknown)"/>
+   <map value="0xffffffff80090304" message="$(string.map_SECURITY_STATUS.InternalError)"/>
+   <map value="0xffffffff80090305" message="$(string.map_SECURITY_STATUS.PackageNotFound)"/>
+   <map value="0xffffffff80090306" message="$(string.map_SECURITY_STATUS.NotOwner)"/>
+   <map value="0xffffffff80090307" message="$(string.map_SECURITY_STATUS.CannotInstall)"/>
+   <map value="0xffffffff80090308" message="$(string.map_SECURITY_STATUS.InvalidToken)"/>
+   <map value="0xffffffff80090309" message="$(string.map_SECURITY_STATUS.CannotPack)"/>
+   <map value="0xffffffff8009030a" message="$(string.map_SECURITY_STATUS.QopNotSupported)"/>
+   <map value="0xffffffff8009030b" message="$(string.map_SECURITY_STATUS.NoImpersonation)"/>
+   <map value="0xffffffff8009030c" message="$(string.map_SECURITY_STATUS.LogonDenied)"/>
+   <map value="0xffffffff8009030d" message="$(string.map_SECURITY_STATUS.UnknownCredentials)"/>
+   <map value="0xffffffff8009030e" message="$(string.map_SECURITY_STATUS.NoCredentials)"/>
+   <map value="0xffffffff8009030f" message="$(string.map_SECURITY_STATUS.MessageAltered)"/>
+   <map value="0xffffffff80090310" message="$(string.map_SECURITY_STATUS.OutOfSequence)"/>
+   <map value="0xffffffff80090311" message="$(string.map_SECURITY_STATUS.NoAuthenticatingAuthority)"/>
+   <map value="0xffffffff80090318" message="$(string.map_SECURITY_STATUS.IncompleteMessage)"/>
+   <map value="0xffffffff80090320" message="$(string.map_SECURITY_STATUS.IncompleteCredentials)"/>
+   <map value="0xffffffff80090321" message="$(string.map_SECURITY_STATUS.BufferNotEnough)"/>
+   <map value="0xffffffff80090322" message="$(string.map_SECURITY_STATUS.WrongPrincipal)"/>
+   <map value="0xffffffff80090324" message="$(string.map_SECURITY_STATUS.TimeSkew)"/>
+   <map value="0xffffffff80090325" message="$(string.map_SECURITY_STATUS.UntrustedRoot)"/>
+   <map value="0xffffffff80090326" message="$(string.map_SECURITY_STATUS.IllegalMessage)"/>
+   <map value="0xffffffff80090327" message="$(string.map_SECURITY_STATUS.CertUnknown)"/>
+   <map value="0xffffffff80090328" message="$(string.map_SECURITY_STATUS.CertExpired)"/>
+   <map value="0xffffffff80090331" message="$(string.map_SECURITY_STATUS.AlgorithmMismatch)"/>
+   <map value="0xffffffff80090332" message="$(string.map_SECURITY_STATUS.SecurityQosFailed)"/>
+   <map value="0xffffffff8009033e" message="$(string.map_SECURITY_STATUS.SmartcardLogonRequired)"/>
+   <map value="0xffffffff80090343" message="$(string.map_SECURITY_STATUS.UnsupportedPreauth)"/>
+   <map value="0xffffffff80090346" message="$(string.map_SECURITY_STATUS.BadBinding)"/>
+   <map value="0xffffffff80090350" message="$(string.map_SECURITY_STATUS.DowngradeDetected)"/>
+   <map value="0xffffffff80090367" message="$(string.map_SECURITY_STATUS.ApplicationProtocolMismatch)"/>
+  </valueMap>
+ </maps>
+ <opcodes>
+ </opcodes>
+ <keywords>
+  <keyword name="Default" message="$(string.keyword_Default)" mask="0x1"/>
+  <keyword name="Debug" message="$(string.keyword_Debug)" mask="0x2"/>
+  <keyword name="EnterExit" message="$(string.keyword_EnterExit)" mask="0x4"/>
+  <keyword name="Session3" message="$(string.keyword_Session3)" mask="0x100000000000"/>
+  <keyword name="Session2" message="$(string.keyword_Session2)" mask="0x200000000000"/>
+  <keyword name="Session1" message="$(string.keyword_Session1)" mask="0x400000000000"/>
+  <keyword name="Session0" message="$(string.keyword_Session0)" mask="0x800000000000"/>
+ </keywords>
+ <events>
+  <event value="0" version="0" level="win:LogAlways" symbol="EventSourceMessage" task="EventSourceMessage" template="EventSourceMessageArgs"/>
+  <event value="1" version="0" level="win:Informational" symbol="Enter" keywords="EnterExit" task="Enter" template="EnterArgs"/>
+  <event value="2" version="0" level="win:Informational" symbol="Exit" keywords="EnterExit" task="Exit" template="ExitArgs"/>
+  <event value="4" version="0" level="win:Informational" symbol="Info" keywords="Default" task="Info" template="InfoArgs"/>
+  <event value="5" version="0" level="win:Warning" symbol="ErrorMessage" keywords="Default" task="ErrorMessage" template="ErrorMessageArgs"/>
+  <event value="6" version="0" level="win:Critical" symbol="CriticalFailure" keywords="Debug" task="CriticalFailure" template="CriticalFailureArgs"/>
+  <event value="3" version="0" level="win:Informational" symbol="Associate" message="$(string.event_Associate)" keywords="Default" task="Associate" template="AssociateArgs"/>
+  <event value="8" version="0" level="win:Informational" symbol="EnumerateSecurityPackages" keywords="Default" task="EnumerateSecurityPackages" template="EnumerateSecurityPackagesArgs"/>
+  <event value="9" version="0" level="win:Informational" symbol="SspiPackageNotFound" keywords="Default" task="SspiPackageNotFound" template="SspiPackageNotFoundArgs"/>
+  <event value="10" version="0" level="win:Informational" symbol="AcquireDefaultCredential" keywords="Default" task="AcquireDefaultCredential" template="AcquireDefaultCredentialArgs"/>
+  <event value="11" version="0" level="win:Informational" symbol="AcquireCredentialsHandle" keywords="Default" task="AcquireCredentialsHandle" template="AcquireCredentialsHandleArgs"/>
+  <event value="12" version="0" level="win:Informational" symbol="InitializeSecurityContext" keywords="Default" task="InitializeSecurityContext" template="InitializeSecurityContextArgs"/>
+  <event value="15" version="0" level="win:Informational" symbol="AcceptSecurityContext" keywords="Default" task="AcceptSecurityContext" template="AcceptSecurityContextArgs"/>
+  <event value="16" version="0" level="win:Informational" symbol="OperationReturnedSomething" message="$(string.event_OperationReturnedSomething)" keywords="Default" task="OperationReturnedSomething" template="OperationReturnedSomethingArgs"/>
+  <event value="14" version="0" level="win:Informational" symbol="SecurityContextInputBuffers" keywords="Default" task="SecurityContextInputBuffers" template="SecurityContextInputBuffersArgs"/>
+ </events>
+ <templates>
+  <template tid="EventSourceMessageArgs">
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="EnterArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="parameters" inType="win:UnicodeString"/>
+  </template>
+  <template tid="ExitArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="result" inType="win:UnicodeString"/>
+  </template>
+  <template tid="InfoArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="ErrorMessageArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="CriticalFailureArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="AssociateArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="first" inType="win:UnicodeString"/>
+   <data name="second" inType="win:UnicodeString"/>
+  </template>
+  <template tid="EnumerateSecurityPackagesArgs">
+   <data name="securityPackage" inType="win:UnicodeString"/>
+  </template>
+  <template tid="SspiPackageNotFoundArgs">
+   <data name="packageName" inType="win:UnicodeString"/>
+  </template>
+  <template tid="AcquireDefaultCredentialArgs">
+   <data name="packageName" inType="win:UnicodeString"/>
+   <data name="intent" inType="win:UInt32" map="CredentialUse"/>
+  </template>
+  <template tid="AcquireCredentialsHandleArgs">
+   <data name="packageName" inType="win:UnicodeString"/>
+   <data name="intent" inType="win:UInt32" map="CredentialUse"/>
+   <data name="authdata" inType="win:UnicodeString"/>
+  </template>
+  <template tid="InitializeSecurityContextArgs">
+   <data name="credential" inType="win:UnicodeString"/>
+   <data name="context" inType="win:UnicodeString"/>
+   <data name="targetName" inType="win:UnicodeString"/>
+   <data name="inFlags" inType="win:UInt32" map="ContextFlags"/>
+  </template>
+  <template tid="AcceptSecurityContextArgs">
+   <data name="credential" inType="win:UnicodeString"/>
+   <data name="context" inType="win:UnicodeString"/>
+   <data name="inFlags" inType="win:UInt32" map="ContextFlags"/>
+  </template>
+  <template tid="OperationReturnedSomethingArgs">
+   <data name="operation" inType="win:UnicodeString"/>
+   <data name="errorCode" inType="win:UInt32" map="SECURITY_STATUS"/>
+  </template>
+  <template tid="SecurityContextInputBuffersArgs">
+   <data name="context" inType="win:UnicodeString"/>
+   <data name="inputBuffersSize" inType="win:Int32"/>
+   <data name="outputBufferSize" inType="win:Int32"/>
+   <data name="errorCode" inType="win:UInt32" map="SECURITY_STATUS"/>
+  </template>
+ </templates>
+</provider>
+</events>
+</instrumentation>
+<localization>
+ <resources culture="en-US">
+  <stringTable>
+   <string id="event_Associate" value="[%3]&lt;--&gt;[%4]"/>
+   <string id="event_OperationReturnedSomething" value="%1 returned %2."/>
+   <string id="keyword_Debug" value="Debug"/>
+   <string id="keyword_Default" value="Default"/>
+   <string id="keyword_EnterExit" value="EnterExit"/>
+   <string id="keyword_Session0" value="Session0"/>
+   <string id="keyword_Session1" value="Session1"/>
+   <string id="keyword_Session2" value="Session2"/>
+   <string id="keyword_Session3" value="Session3"/>
+   <string id="map_ContextFlags.AcceptExtendedError" value="AcceptExtendedError"/>
+   <string id="map_ContextFlags.AcceptIdentify" value="AcceptIdentify"/>
+   <string id="map_ContextFlags.AcceptIntegrity" value="AcceptIntegrity"/>
+   <string id="map_ContextFlags.AcceptStream" value="AcceptStream"/>
+   <string id="map_ContextFlags.AllocateMemory" value="AllocateMemory"/>
+   <string id="map_ContextFlags.AllowMissingBindings" value="AllowMissingBindings"/>
+   <string id="map_ContextFlags.Confidentiality" value="Confidentiality"/>
+   <string id="map_ContextFlags.Connection" value="Connection"/>
+   <string id="map_ContextFlags.Delegate" value="Delegate"/>
+   <string id="map_ContextFlags.InitExtendedError" value="InitExtendedError"/>
+   <string id="map_ContextFlags.InitIdentify" value="InitIdentify"/>
+   <string id="map_ContextFlags.InitIntegrity" value="InitIntegrity"/>
+   <string id="map_ContextFlags.InitManualCredValidation" value="InitManualCredValidation"/>
+   <string id="map_ContextFlags.InitStream" value="InitStream"/>
+   <string id="map_ContextFlags.InitUseSuppliedCreds" value="InitUseSuppliedCreds"/>
+   <string id="map_ContextFlags.MutualAuth" value="MutualAuth"/>
+   <string id="map_ContextFlags.ProxyBindings" value="ProxyBindings"/>
+   <string id="map_ContextFlags.ReplayDetect" value="ReplayDetect"/>
+   <string id="map_ContextFlags.SequenceDetect" value="SequenceDetect"/>
+   <string id="map_ContextFlags.UnverifiedTargetName" value="UnverifiedTargetName"/>
+   <string id="map_ContextFlags.UseSessionKey" value="UseSessionKey"/>
+   <string id="map_CredentialUse.SECPKG_CRED_BOTH" value="SECPKG_CRED_BOTH"/>
+   <string id="map_CredentialUse.SECPKG_CRED_INBOUND" value="SECPKG_CRED_INBOUND"/>
+   <string id="map_CredentialUse.SECPKG_CRED_OUTBOUND" value="SECPKG_CRED_OUTBOUND"/>
+   <string id="map_SECURITY_STATUS.AlgorithmMismatch" value="AlgorithmMismatch"/>
+   <string id="map_SECURITY_STATUS.ApplicationProtocolMismatch" value="ApplicationProtocolMismatch"/>
+   <string id="map_SECURITY_STATUS.BadBinding" value="BadBinding"/>
+   <string id="map_SECURITY_STATUS.BufferNotEnough" value="BufferNotEnough"/>
+   <string id="map_SECURITY_STATUS.CannotInstall" value="CannotInstall"/>
+   <string id="map_SECURITY_STATUS.CannotPack" value="CannotPack"/>
+   <string id="map_SECURITY_STATUS.CertExpired" value="CertExpired"/>
+   <string id="map_SECURITY_STATUS.CertUnknown" value="CertUnknown"/>
+   <string id="map_SECURITY_STATUS.CompAndContinue" value="CompAndContinue"/>
+   <string id="map_SECURITY_STATUS.CompleteNeeded" value="CompleteNeeded"/>
+   <string id="map_SECURITY_STATUS.ContextExpired" value="ContextExpired"/>
+   <string id="map_SECURITY_STATUS.ContinueNeeded" value="ContinueNeeded"/>
+   <string id="map_SECURITY_STATUS.CredentialsNeeded" value="CredentialsNeeded"/>
+   <string id="map_SECURITY_STATUS.DowngradeDetected" value="DowngradeDetected"/>
+   <string id="map_SECURITY_STATUS.IllegalMessage" value="IllegalMessage"/>
+   <string id="map_SECURITY_STATUS.IncompleteCredentials" value="IncompleteCredentials"/>
+   <string id="map_SECURITY_STATUS.IncompleteMessage" value="IncompleteMessage"/>
+   <string id="map_SECURITY_STATUS.InternalError" value="InternalError"/>
+   <string id="map_SECURITY_STATUS.InvalidHandle" value="InvalidHandle"/>
+   <string id="map_SECURITY_STATUS.InvalidToken" value="InvalidToken"/>
+   <string id="map_SECURITY_STATUS.LogonDenied" value="LogonDenied"/>
+   <string id="map_SECURITY_STATUS.MessageAltered" value="MessageAltered"/>
+   <string id="map_SECURITY_STATUS.NoAuthenticatingAuthority" value="NoAuthenticatingAuthority"/>
+   <string id="map_SECURITY_STATUS.NoCredentials" value="NoCredentials"/>
+   <string id="map_SECURITY_STATUS.NoImpersonation" value="NoImpersonation"/>
+   <string id="map_SECURITY_STATUS.NotOwner" value="NotOwner"/>
+   <string id="map_SECURITY_STATUS.OK" value="OK"/>
+   <string id="map_SECURITY_STATUS.OutOfMemory" value="OutOfMemory"/>
+   <string id="map_SECURITY_STATUS.OutOfSequence" value="OutOfSequence"/>
+   <string id="map_SECURITY_STATUS.PackageNotFound" value="PackageNotFound"/>
+   <string id="map_SECURITY_STATUS.QopNotSupported" value="QopNotSupported"/>
+   <string id="map_SECURITY_STATUS.Renegotiate" value="Renegotiate"/>
+   <string id="map_SECURITY_STATUS.SecurityQosFailed" value="SecurityQosFailed"/>
+   <string id="map_SECURITY_STATUS.SmartcardLogonRequired" value="SmartcardLogonRequired"/>
+   <string id="map_SECURITY_STATUS.TargetUnknown" value="TargetUnknown"/>
+   <string id="map_SECURITY_STATUS.TimeSkew" value="TimeSkew"/>
+   <string id="map_SECURITY_STATUS.UnknownCredentials" value="UnknownCredentials"/>
+   <string id="map_SECURITY_STATUS.Unsupported" value="Unsupported"/>
+   <string id="map_SECURITY_STATUS.UnsupportedPreauth" value="UnsupportedPreauth"/>
+   <string id="map_SECURITY_STATUS.UntrustedRoot" value="UntrustedRoot"/>
+   <string id="map_SECURITY_STATUS.WrongPrincipal" value="WrongPrincipal"/>
+   <string id="task_AcceptSecurityContext" value="AcceptSecurityContext"/>
+   <string id="task_AcquireCredentialsHandle" value="AcquireCredentialsHandle"/>
+   <string id="task_AcquireDefaultCredential" value="AcquireDefaultCredential"/>
+   <string id="task_Associate" value="Associate"/>
+   <string id="task_CriticalFailure" value="CriticalFailure"/>
+   <string id="task_Enter" value="Enter"/>
+   <string id="task_EnumerateSecurityPackages" value="EnumerateSecurityPackages"/>
+   <string id="task_ErrorMessage" value="ErrorMessage"/>
+   <string id="task_EventSourceMessage" value="EventSourceMessage"/>
+   <string id="task_Exit" value="Exit"/>
+   <string id="task_Info" value="Info"/>
+   <string id="task_InitializeSecurityContext" value="InitializeSecurityContext"/>
+   <string id="task_OperationReturnedSomething" value="OperationReturnedSomething"/>
+   <string id="task_SecurityContextInputBuffers" value="SecurityContextInputBuffers"/>
+   <string id="task_SspiPackageNotFound" value="SspiPackageNotFound"/>
+  </stringTable>
+ </resources>
+</localization>
+</instrumentationManifest>

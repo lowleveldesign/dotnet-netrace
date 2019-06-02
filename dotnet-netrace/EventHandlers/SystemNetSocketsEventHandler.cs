@@ -3,9 +3,9 @@ using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftSystemNetSockets;
 using Microsoft.Diagnostics.Tracing.Session;
 
-namespace LowLevelDesign.NTrace.EventHandlers.System.Net
+namespace LowLevelDesign.NTrace.EventHandlers
 {
-    internal class SystemNetEventHandler : ITraceEventHandler
+    internal class SystemNetSocketsEventHandler : ITraceEventHandler
     {
         private readonly ITraceOutput traceOutput;
         private readonly int pid;
@@ -13,7 +13,7 @@ namespace LowLevelDesign.NTrace.EventHandlers.System.Net
 
         public KernelTraceEventParser.Keywords RequiredKernelFlags => KernelTraceEventParser.Keywords.None;
 
-        public SystemNetEventHandler(int pid, bool printPacketBytes, ITraceOutput output)
+        public SystemNetSocketsEventHandler(int pid, bool printPacketBytes, ITraceOutput output)
         {
             traceOutput = output;
             this.printPacketBytes = printPacketBytes;

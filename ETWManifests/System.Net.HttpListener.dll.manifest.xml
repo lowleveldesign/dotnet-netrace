@@ -1,33 +1,11 @@
 <instrumentationManifest xmlns="http://schemas.microsoft.com/win/2004/08/events">
  <instrumentation xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events">
   <events xmlns="http://schemas.microsoft.com/win/2004/08/events">
-<provider name="Microsoft-System-Net-Security" guid="{066c0e27-a02d-5a98-9a4d-078cc3b1a896}" resourceFileName="Microsoft-System-Net-Security" messageFileName="Microsoft-System-Net-Security" symbol="MicrosoftSystemNetSecurity">
+<provider name="Microsoft-System-Net-HttpListener" guid="{9f752523-ab58-5706-15d3-8129d26a840c}" resourceFileName="" messageFileName="" symbol="MicrosoftSystemNetHttpListener">
  <tasks>
-  <task name="RemoteCertUserDeclaredInvalid" message="$(string.task_RemoteCertUserDeclaredInvalid)" value="65497"/>
-  <task name="RemoteCertHasNoErrors" message="$(string.task_RemoteCertHasNoErrors)" value="65498"/>
-  <task name="RemoteCertDeclaredValid" message="$(string.task_RemoteCertDeclaredValid)" value="65499"/>
-  <task name="RemoteCertificateError" message="$(string.task_RemoteCertificateError)" value="65500"/>
-  <task name="SspiSelectedCipherSuite" message="$(string.task_SspiSelectedCipherSuite)" value="65501"/>
-  <task name="UsingCachedCredential" message="$(string.task_UsingCachedCredential)" value="65502"/>
-  <task name="FindingMatchingCerts" message="$(string.task_FindingMatchingCerts)" value="65503"/>
-  <task name="CertsAfterFiltering" message="$(string.task_CertsAfterFiltering)" value="65504"/>
-  <task name="SelectedCert" message="$(string.task_SelectedCert)" value="65505"/>
-  <task name="LookForMatchingCerts" message="$(string.task_LookForMatchingCerts)" value="65506"/>
-  <task name="NoIssuersTryAllCerts" message="$(string.task_NoIssuersTryAllCerts)" value="65507"/>
-  <task name="AttemptingRestartUsingCert" message="$(string.task_AttemptingRestartUsingCert)" value="65508"/>
-  <task name="NoDelegateButClientCert" message="$(string.task_NoDelegateButClientCert)" value="65509"/>
-  <task name="NoDelegateNoClientCert" message="$(string.task_NoDelegateNoClientCert)" value="65510"/>
-  <task name="CertificateFromDelegate" message="$(string.task_CertificateFromDelegate)" value="65511"/>
-  <task name="RemoteCertificate" message="$(string.task_RemoteCertificate)" value="65512"/>
-  <task name="NotFoundCertInStore" message="$(string.task_NotFoundCertInStore)" value="65513"/>
-  <task name="FoundCertInStore" message="$(string.task_FoundCertInStore)" value="65514"/>
-  <task name="CertIsType2" message="$(string.task_CertIsType2)" value="65515"/>
-  <task name="LocatingPrivateKey" message="$(string.task_LocatingPrivateKey)" value="65516"/>
-  <task name="SecureChannelCtor" message="$(string.task_SecureChannelCtor)" value="65517"/>
   <task name="OperationReturnedSomething" message="$(string.task_OperationReturnedSomething)" value="65518"/>
   <task name="AcceptSecurityContext" message="$(string.task_AcceptSecurityContext)" value="65519"/>
   <task name="SecurityContextInputBuffers" message="$(string.task_SecurityContextInputBuffers)" value="65520"/>
-  <task name="SecurityContextInputBuffer" message="$(string.task_SecurityContextInputBuffer)" value="65521"/>
   <task name="InitializeSecurityContext" message="$(string.task_InitializeSecurityContext)" value="65522"/>
   <task name="AcquireCredentialsHandle" message="$(string.task_AcquireCredentialsHandle)" value="65523"/>
   <task name="AcquireDefaultCredential" message="$(string.task_AcquireDefaultCredential)" value="65524"/>
@@ -43,39 +21,6 @@
   <task name="EventSourceMessage" message="$(string.task_EventSourceMessage)" value="65534"/>
  </tasks>
  <maps>
-  <valueMap name="EncryptionPolicy">
-   <map value="0x0" message="$(string.map_EncryptionPolicy.RequireEncryption)"/>
-   <map value="0x1" message="$(string.map_EncryptionPolicy.AllowNoEncryption)"/>
-   <map value="0x2" message="$(string.map_EncryptionPolicy.NoEncryption)"/>
-  </valueMap>
-  <bitMap name="SslProtocols">
-  </bitMap>
-  <valueMap name="CipherAlgorithmType">
-   <map value="0x0" message="$(string.map_CipherAlgorithmType.None)"/>
-   <map value="0x6602" message="$(string.map_CipherAlgorithmType.Rc2)"/>
-   <map value="0x6801" message="$(string.map_CipherAlgorithmType.Rc4)"/>
-   <map value="0x6601" message="$(string.map_CipherAlgorithmType.Des)"/>
-   <map value="0x6603" message="$(string.map_CipherAlgorithmType.TripleDes)"/>
-   <map value="0x6611" message="$(string.map_CipherAlgorithmType.Aes)"/>
-   <map value="0x660e" message="$(string.map_CipherAlgorithmType.Aes128)"/>
-   <map value="0x660f" message="$(string.map_CipherAlgorithmType.Aes192)"/>
-   <map value="0x6610" message="$(string.map_CipherAlgorithmType.Aes256)"/>
-   <map value="0x6000" message="$(string.map_CipherAlgorithmType.Null)"/>
-  </valueMap>
-  <valueMap name="HashAlgorithmType">
-   <map value="0x0" message="$(string.map_HashAlgorithmType.None)"/>
-   <map value="0x8003" message="$(string.map_HashAlgorithmType.Md5)"/>
-   <map value="0x8004" message="$(string.map_HashAlgorithmType.Sha1)"/>
-   <map value="0x800c" message="$(string.map_HashAlgorithmType.Sha256)"/>
-   <map value="0x800d" message="$(string.map_HashAlgorithmType.Sha384)"/>
-   <map value="0x800e" message="$(string.map_HashAlgorithmType.Sha512)"/>
-  </valueMap>
-  <valueMap name="ExchangeAlgorithmType">
-   <map value="0x0" message="$(string.map_ExchangeAlgorithmType.None)"/>
-   <map value="0x2400" message="$(string.map_ExchangeAlgorithmType.RsaSign)"/>
-   <map value="0xa400" message="$(string.map_ExchangeAlgorithmType.RsaKeyX)"/>
-   <map value="0xaa02" message="$(string.map_ExchangeAlgorithmType.DiffieHellman)"/>
-  </valueMap>
   <valueMap name="CredentialUse">
    <map value="0x1" message="$(string.map_CredentialUse.SECPKG_CRED_INBOUND)"/>
    <map value="0x2" message="$(string.map_CredentialUse.SECPKG_CRED_OUTBOUND)"/>
@@ -161,29 +106,6 @@
  </keywords>
  <events>
   <event value="0" version="0" level="win:LogAlways" symbol="EventSourceMessage" task="EventSourceMessage" template="EventSourceMessageArgs"/>
-  <event value="8" version="0" level="win:Informational" symbol="EnumerateSecurityPackages" message="$(string.event_EnumerateSecurityPackages)" keywords="Default" task="EnumerateSecurityPackages" template="EnumerateSecurityPackagesArgs"/>
-  <event value="9" version="0" level="win:Informational" symbol="SspiPackageNotFound" message="$(string.event_SspiPackageNotFound)" keywords="Default" task="SspiPackageNotFound" template="SspiPackageNotFoundArgs"/>
-  <event value="17" version="0" level="win:Informational" symbol="SecureChannelCtor" keywords="Default" task="SecureChannelCtor" template="SecureChannelCtorArgs"/>
-  <event value="18" version="0" level="win:Informational" symbol="LocatingPrivateKey" message="$(string.event_LocatingPrivateKey)" keywords="Default" task="LocatingPrivateKey" template="LocatingPrivateKeyArgs"/>
-  <event value="19" version="0" level="win:Informational" symbol="CertIsType2" message="$(string.event_CertIsType2)" keywords="Default" task="CertIsType2" template="CertIsType2Args"/>
-  <event value="20" version="0" level="win:Informational" symbol="FoundCertInStore" message="$(string.event_FoundCertInStore)" keywords="Default" task="FoundCertInStore" template="FoundCertInStoreArgs"/>
-  <event value="21" version="0" level="win:Informational" symbol="NotFoundCertInStore" message="$(string.event_NotFoundCertInStore)" keywords="Default" task="NotFoundCertInStore" template="NotFoundCertInStoreArgs"/>
-  <event value="22" version="0" level="win:Informational" symbol="RemoteCertificate" message="$(string.event_RemoteCertificate)" keywords="Default" task="RemoteCertificate" template="RemoteCertificateArgs"/>
-  <event value="23" version="0" level="win:Informational" symbol="CertificateFromDelegate" message="$(string.event_CertificateFromDelegate)" keywords="Default" task="CertificateFromDelegate" template="CertificateFromDelegateArgs"/>
-  <event value="24" version="0" level="win:Informational" symbol="NoDelegateNoClientCert" message="$(string.event_NoDelegateNoClientCert)" keywords="Default" task="NoDelegateNoClientCert" template="NoDelegateNoClientCertArgs"/>
-  <event value="25" version="0" level="win:Informational" symbol="NoDelegateButClientCert" message="$(string.event_NoDelegateButClientCert)" keywords="Default" task="NoDelegateButClientCert" template="NoDelegateButClientCertArgs"/>
-  <event value="26" version="0" level="win:Informational" symbol="AttemptingRestartUsingCert" message="$(string.event_AttemptingRestartUsingCert)" keywords="Default" task="AttemptingRestartUsingCert" template="AttemptingRestartUsingCertArgs"/>
-  <event value="27" version="0" level="win:Informational" symbol="NoIssuersTryAllCerts" message="$(string.event_NoIssuersTryAllCerts)" keywords="Default" task="NoIssuersTryAllCerts" template="NoIssuersTryAllCertsArgs"/>
-  <event value="28" version="0" level="win:Informational" symbol="LookForMatchingCerts" message="$(string.event_LookForMatchingCerts)" keywords="Default" task="LookForMatchingCerts" template="LookForMatchingCertsArgs"/>
-  <event value="29" version="0" level="win:Informational" symbol="SelectedCert" message="$(string.event_SelectedCert)" keywords="Default" task="SelectedCert" template="SelectedCertArgs"/>
-  <event value="30" version="0" level="win:Informational" symbol="CertsAfterFiltering" message="$(string.event_CertsAfterFiltering)" keywords="Default" task="CertsAfterFiltering" template="CertsAfterFilteringArgs"/>
-  <event value="31" version="0" level="win:Informational" symbol="FindingMatchingCerts" message="$(string.event_FindingMatchingCerts)" keywords="Default" task="FindingMatchingCerts" template="FindingMatchingCertsArgs"/>
-  <event value="32" version="0" level="win:Informational" symbol="UsingCachedCredential" message="$(string.event_UsingCachedCredential)" keywords="Default" task="UsingCachedCredential" template="UsingCachedCredentialArgs"/>
-  <event value="33" version="0" level="win:Informational" symbol="SspiSelectedCipherSuite" message="$(string.event_SspiSelectedCipherSuite)" keywords="Default" task="SspiSelectedCipherSuite" template="SspiSelectedCipherSuiteArgs"/>
-  <event value="34" version="0" level="win:Verbose" symbol="RemoteCertificateError" keywords="Default" task="RemoteCertificateError" template="RemoteCertificateErrorArgs"/>
-  <event value="35" version="0" level="win:Verbose" symbol="RemoteCertDeclaredValid" message="$(string.event_RemoteCertDeclaredValid)" keywords="Default" task="RemoteCertDeclaredValid" template="RemoteCertDeclaredValidArgs"/>
-  <event value="36" version="0" level="win:Verbose" symbol="RemoteCertHasNoErrors" message="$(string.event_RemoteCertHasNoErrors)" keywords="Default" task="RemoteCertHasNoErrors" template="RemoteCertHasNoErrorsArgs"/>
-  <event value="37" version="0" level="win:Verbose" symbol="RemoteCertUserDeclaredInvalid" message="$(string.event_RemoteCertUserDeclaredInvalid)" keywords="Default" task="RemoteCertUserDeclaredInvalid" template="RemoteCertUserDeclaredInvalidArgs"/>
   <event value="1" version="0" level="win:Informational" symbol="Enter" keywords="EnterExit" task="Enter" template="EnterArgs"/>
   <event value="2" version="0" level="win:Informational" symbol="Exit" keywords="EnterExit" task="Exit" template="ExitArgs"/>
   <event value="4" version="0" level="win:Informational" symbol="Info" keywords="Default" task="Info" template="InfoArgs"/>
@@ -191,103 +113,18 @@
   <event value="6" version="0" level="win:Critical" symbol="CriticalFailure" keywords="Debug" task="CriticalFailure" template="CriticalFailureArgs"/>
   <event value="7" version="0" level="win:Verbose" symbol="DumpBuffer" keywords="Debug" task="DumpBuffer" template="DumpBufferArgs"/>
   <event value="3" version="0" level="win:Informational" symbol="Associate" message="$(string.event_Associate)" keywords="Default" task="Associate" template="AssociateArgs"/>
+  <event value="8" version="0" level="win:Informational" symbol="EnumerateSecurityPackages" keywords="Default" task="EnumerateSecurityPackages" template="EnumerateSecurityPackagesArgs"/>
+  <event value="9" version="0" level="win:Informational" symbol="SspiPackageNotFound" keywords="Default" task="SspiPackageNotFound" template="SspiPackageNotFoundArgs"/>
   <event value="10" version="0" level="win:Informational" symbol="AcquireDefaultCredential" keywords="Default" task="AcquireDefaultCredential" template="AcquireDefaultCredentialArgs"/>
   <event value="11" version="0" level="win:Informational" symbol="AcquireCredentialsHandle" keywords="Default" task="AcquireCredentialsHandle" template="AcquireCredentialsHandleArgs"/>
   <event value="12" version="0" level="win:Informational" symbol="InitializeSecurityContext" keywords="Default" task="InitializeSecurityContext" template="InitializeSecurityContextArgs"/>
   <event value="15" version="0" level="win:Informational" symbol="AcceptSecurityContext" keywords="Default" task="AcceptSecurityContext" template="AcceptSecurityContextArgs"/>
   <event value="16" version="0" level="win:Informational" symbol="OperationReturnedSomething" message="$(string.event_OperationReturnedSomething)" keywords="Default" task="OperationReturnedSomething" template="OperationReturnedSomethingArgs"/>
-  <event value="13" version="0" level="win:Informational" symbol="SecurityContextInputBuffer" message="$(string.event_SecurityContextInputBuffer)" keywords="Default" task="SecurityContextInputBuffer" template="SecurityContextInputBufferArgs"/>
-  <event value="14" version="0" level="win:Informational" symbol="SecurityContextInputBuffers" message="$(string.event_SecurityContextInputBuffers)" keywords="Default" task="SecurityContextInputBuffers" template="SecurityContextInputBuffersArgs"/>
+  <event value="14" version="0" level="win:Informational" symbol="SecurityContextInputBuffers" keywords="Default" task="SecurityContextInputBuffers" template="SecurityContextInputBuffersArgs"/>
  </events>
  <templates>
   <template tid="EventSourceMessageArgs">
    <data name="message" inType="win:UnicodeString"/>
-  </template>
-  <template tid="EnumerateSecurityPackagesArgs">
-   <data name="securityPackage" inType="win:UnicodeString"/>
-  </template>
-  <template tid="SspiPackageNotFoundArgs">
-   <data name="packageName" inType="win:UnicodeString"/>
-  </template>
-  <template tid="SecureChannelCtorArgs">
-   <data name="hostname" inType="win:UnicodeString"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-   <data name="clientCertificatesCount" inType="win:Int32"/>
-   <data name="encryptionPolicy" inType="win:UInt32" map="EncryptionPolicy"/>
-  </template>
-  <template tid="LocatingPrivateKeyArgs">
-   <data name="x509Certificate" inType="win:UnicodeString"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="CertIsType2Args">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="FoundCertInStoreArgs">
-   <data name="store" inType="win:UnicodeString"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="NotFoundCertInStoreArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="RemoteCertificateArgs">
-   <data name="remoteCertificate" inType="win:UnicodeString"/>
-  </template>
-  <template tid="CertificateFromDelegateArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="NoDelegateNoClientCertArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="NoDelegateButClientCertArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="AttemptingRestartUsingCertArgs">
-   <data name="clientCertificate" inType="win:UnicodeString"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="NoIssuersTryAllCertsArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="LookForMatchingCertsArgs">
-   <data name="issuersCount" inType="win:Int32"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="SelectedCertArgs">
-   <data name="clientCertificate" inType="win:UnicodeString"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="CertsAfterFilteringArgs">
-   <data name="filteredCertsCount" inType="win:Int32"/>
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="FindingMatchingCertsArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="UsingCachedCredentialArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="SspiSelectedCipherSuiteArgs">
-   <data name="process" inType="win:UnicodeString"/>
-   <data name="sslProtocol" inType="win:UInt32" map="SslProtocols"/>
-   <data name="cipherAlgorithm" inType="win:UInt32" map="CipherAlgorithmType"/>
-   <data name="cipherStrength" inType="win:Int32"/>
-   <data name="hashAlgorithm" inType="win:UInt32" map="HashAlgorithmType"/>
-   <data name="hashStrength" inType="win:Int32"/>
-   <data name="keyExchangeAlgorithm" inType="win:UInt32" map="ExchangeAlgorithmType"/>
-   <data name="keyExchangeStrength" inType="win:Int32"/>
-  </template>
-  <template tid="RemoteCertificateErrorArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-   <data name="message" inType="win:UnicodeString"/>
-  </template>
-  <template tid="RemoteCertDeclaredValidArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="RemoteCertHasNoErrorsArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
-  </template>
-  <template tid="RemoteCertUserDeclaredInvalidArgs">
-   <data name="secureChannelHash" inType="win:Int32"/>
   </template>
   <template tid="EnterArgs">
    <data name="thisOrContextObject" inType="win:UnicodeString"/>
@@ -326,6 +163,12 @@
    <data name="first" inType="win:UnicodeString"/>
    <data name="second" inType="win:UnicodeString"/>
   </template>
+  <template tid="EnumerateSecurityPackagesArgs">
+   <data name="securityPackage" inType="win:UnicodeString"/>
+  </template>
+  <template tid="SspiPackageNotFoundArgs">
+   <data name="packageName" inType="win:UnicodeString"/>
+  </template>
   <template tid="AcquireDefaultCredentialArgs">
    <data name="packageName" inType="win:UnicodeString"/>
    <data name="intent" inType="win:UInt32" map="CredentialUse"/>
@@ -350,12 +193,6 @@
    <data name="operation" inType="win:UnicodeString"/>
    <data name="errorCode" inType="win:UInt32" map="SECURITY_STATUS"/>
   </template>
-  <template tid="SecurityContextInputBufferArgs">
-   <data name="context" inType="win:UnicodeString"/>
-   <data name="inputBufferSize" inType="win:Int32"/>
-   <data name="outputBufferSize" inType="win:Int32"/>
-   <data name="errorCode" inType="win:UInt32" map="SECURITY_STATUS"/>
-  </template>
   <template tid="SecurityContextInputBuffersArgs">
    <data name="context" inType="win:UnicodeString"/>
    <data name="inputBuffersSize" inType="win:Int32"/>
@@ -370,30 +207,7 @@
  <resources culture="en-US">
   <stringTable>
    <string id="event_Associate" value="[%3]&lt;--&gt;[%4]"/>
-   <string id="event_AttemptingRestartUsingCert" value="Attempting to restart the session using the user-provided certificate: %1."/>
-   <string id="event_CertificateFromDelegate" value="Got a certificate from the client delegate."/>
-   <string id="event_CertIsType2" value="Certificate is of type X509Certificate2 and contains the private key."/>
-   <string id="event_CertsAfterFiltering" value="Left with %1 client certificates to choose from."/>
-   <string id="event_EnumerateSecurityPackages" value="Enumerating security packages:"/>
-   <string id="event_FindingMatchingCerts" value="Trying to find a matching certificate in the certificate store."/>
-   <string id="event_FoundCertInStore" value="Found the certificate in the %1 store."/>
-   <string id="event_LocatingPrivateKey" value="Locating the private key for the certificate: %1."/>
-   <string id="event_LookForMatchingCerts" value="We have user-provided certificates. The server has specified %1 issuer(s). Looking for certificates that match any of the issuers."/>
-   <string id="event_NoDelegateButClientCert" value="Client delegate did not provide a certificate; but there are other user-provided certificates."/>
-   <string id="event_NoDelegateNoClientCert" value="Client delegate did not provide a certificate; and there are not other user-provided certificates. Need to attempt a session restart."/>
-   <string id="event_NoIssuersTryAllCerts" value="We have user-provided certificates. The server has not specified any issuers, so try all the certificates."/>
-   <string id="event_NotFoundCertInStore" value="Cannot find the certificate in either the LocalMachine store or the CurrentUser store."/>
    <string id="event_OperationReturnedSomething" value="%1 returned %2."/>
-   <string id="event_RemoteCertDeclaredValid" value="Remote certificate was verified as valid by the user."/>
-   <string id="event_RemoteCertHasNoErrors" value="Remote certificate has no errors."/>
-   <string id="event_RemoteCertificate" value="Remote certificate: %1."/>
-   <string id="event_RemoteCertUserDeclaredInvalid" value="Remote certificate was verified as invalid by the user."/>
-   <string id="event_SecurityContextInputBuffer" value="%1(In-Buffer length=%2, Out-Buffer length=%3, returned code=%4)."/>
-   <string id="event_SecurityContextInputBuffers" value="%1(In-Buffers count=%2, Out-Buffer length=%3, returned code=%4)."/>
-   <string id="event_SelectedCert" value="Selected certificate: %1."/>
-   <string id="event_SspiPackageNotFound" value="Security package &apos;%1&apos; was not found."/>
-   <string id="event_SspiSelectedCipherSuite" value="%1(Protocol=%2, Cipher=%3 %4 bit strength, Hash=%5 %6 bit strength, Key Exchange=%7 %8 bit strength)."/>
-   <string id="event_UsingCachedCredential" value="Using the cached credential handle."/>
    <string id="keyword_Debug" value="Debug"/>
    <string id="keyword_Default" value="Default"/>
    <string id="keyword_EnterExit" value="EnterExit"/>
@@ -401,16 +215,6 @@
    <string id="keyword_Session1" value="Session1"/>
    <string id="keyword_Session2" value="Session2"/>
    <string id="keyword_Session3" value="Session3"/>
-   <string id="map_CipherAlgorithmType.Aes" value="Aes"/>
-   <string id="map_CipherAlgorithmType.Aes128" value="Aes128"/>
-   <string id="map_CipherAlgorithmType.Aes192" value="Aes192"/>
-   <string id="map_CipherAlgorithmType.Aes256" value="Aes256"/>
-   <string id="map_CipherAlgorithmType.Des" value="Des"/>
-   <string id="map_CipherAlgorithmType.None" value="None"/>
-   <string id="map_CipherAlgorithmType.Null" value="Null"/>
-   <string id="map_CipherAlgorithmType.Rc2" value="Rc2"/>
-   <string id="map_CipherAlgorithmType.Rc4" value="Rc4"/>
-   <string id="map_CipherAlgorithmType.TripleDes" value="TripleDes"/>
    <string id="map_ContextFlags.AcceptExtendedError" value="AcceptExtendedError"/>
    <string id="map_ContextFlags.AcceptIdentify" value="AcceptIdentify"/>
    <string id="map_ContextFlags.AcceptIntegrity" value="AcceptIntegrity"/>
@@ -435,19 +239,6 @@
    <string id="map_CredentialUse.SECPKG_CRED_BOTH" value="SECPKG_CRED_BOTH"/>
    <string id="map_CredentialUse.SECPKG_CRED_INBOUND" value="SECPKG_CRED_INBOUND"/>
    <string id="map_CredentialUse.SECPKG_CRED_OUTBOUND" value="SECPKG_CRED_OUTBOUND"/>
-   <string id="map_EncryptionPolicy.AllowNoEncryption" value="AllowNoEncryption"/>
-   <string id="map_EncryptionPolicy.NoEncryption" value="NoEncryption"/>
-   <string id="map_EncryptionPolicy.RequireEncryption" value="RequireEncryption"/>
-   <string id="map_ExchangeAlgorithmType.DiffieHellman" value="DiffieHellman"/>
-   <string id="map_ExchangeAlgorithmType.None" value="None"/>
-   <string id="map_ExchangeAlgorithmType.RsaKeyX" value="RsaKeyX"/>
-   <string id="map_ExchangeAlgorithmType.RsaSign" value="RsaSign"/>
-   <string id="map_HashAlgorithmType.Md5" value="Md5"/>
-   <string id="map_HashAlgorithmType.None" value="None"/>
-   <string id="map_HashAlgorithmType.Sha1" value="Sha1"/>
-   <string id="map_HashAlgorithmType.Sha256" value="Sha256"/>
-   <string id="map_HashAlgorithmType.Sha384" value="Sha384"/>
-   <string id="map_HashAlgorithmType.Sha512" value="Sha512"/>
    <string id="map_SECURITY_STATUS.AlgorithmMismatch" value="AlgorithmMismatch"/>
    <string id="map_SECURITY_STATUS.ApplicationProtocolMismatch" value="ApplicationProtocolMismatch"/>
    <string id="map_SECURITY_STATUS.BadBinding" value="BadBinding"/>
@@ -493,10 +284,6 @@
    <string id="task_AcquireCredentialsHandle" value="AcquireCredentialsHandle"/>
    <string id="task_AcquireDefaultCredential" value="AcquireDefaultCredential"/>
    <string id="task_Associate" value="Associate"/>
-   <string id="task_AttemptingRestartUsingCert" value="AttemptingRestartUsingCert"/>
-   <string id="task_CertificateFromDelegate" value="CertificateFromDelegate"/>
-   <string id="task_CertIsType2" value="CertIsType2"/>
-   <string id="task_CertsAfterFiltering" value="CertsAfterFiltering"/>
    <string id="task_CriticalFailure" value="CriticalFailure"/>
    <string id="task_DumpBuffer" value="DumpBuffer"/>
    <string id="task_Enter" value="Enter"/>
@@ -504,29 +291,11 @@
    <string id="task_ErrorMessage" value="ErrorMessage"/>
    <string id="task_EventSourceMessage" value="EventSourceMessage"/>
    <string id="task_Exit" value="Exit"/>
-   <string id="task_FindingMatchingCerts" value="FindingMatchingCerts"/>
-   <string id="task_FoundCertInStore" value="FoundCertInStore"/>
    <string id="task_Info" value="Info"/>
    <string id="task_InitializeSecurityContext" value="InitializeSecurityContext"/>
-   <string id="task_LocatingPrivateKey" value="LocatingPrivateKey"/>
-   <string id="task_LookForMatchingCerts" value="LookForMatchingCerts"/>
-   <string id="task_NoDelegateButClientCert" value="NoDelegateButClientCert"/>
-   <string id="task_NoDelegateNoClientCert" value="NoDelegateNoClientCert"/>
-   <string id="task_NoIssuersTryAllCerts" value="NoIssuersTryAllCerts"/>
-   <string id="task_NotFoundCertInStore" value="NotFoundCertInStore"/>
    <string id="task_OperationReturnedSomething" value="OperationReturnedSomething"/>
-   <string id="task_RemoteCertDeclaredValid" value="RemoteCertDeclaredValid"/>
-   <string id="task_RemoteCertHasNoErrors" value="RemoteCertHasNoErrors"/>
-   <string id="task_RemoteCertificate" value="RemoteCertificate"/>
-   <string id="task_RemoteCertificateError" value="RemoteCertificateError"/>
-   <string id="task_RemoteCertUserDeclaredInvalid" value="RemoteCertUserDeclaredInvalid"/>
-   <string id="task_SecureChannelCtor" value="SecureChannelCtor"/>
-   <string id="task_SecurityContextInputBuffer" value="SecurityContextInputBuffer"/>
    <string id="task_SecurityContextInputBuffers" value="SecurityContextInputBuffers"/>
-   <string id="task_SelectedCert" value="SelectedCert"/>
    <string id="task_SspiPackageNotFound" value="SspiPackageNotFound"/>
-   <string id="task_SspiSelectedCipherSuite" value="SspiSelectedCipherSuite"/>
-   <string id="task_UsingCachedCredential" value="UsingCachedCredential"/>
   </stringTable>
  </resources>
 </localization>

@@ -1,0 +1,84 @@
+<instrumentationManifest xmlns="http://schemas.microsoft.com/win/2004/08/events">
+ <instrumentation xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events">
+  <events xmlns="http://schemas.microsoft.com/win/2004/08/events">
+<provider name="Microsoft-System-Net-NameResolution" guid="{5f302add-3825-520e-8fa0-627b206e2e7e}" resourceFileName="" messageFileName="" symbol="MicrosoftSystemNetNameResolution">
+ <tasks>
+  <task name="CriticalFailure" message="$(string.task_CriticalFailure)" value="65528"/>
+  <task name="ErrorMessage" message="$(string.task_ErrorMessage)" value="65529"/>
+  <task name="Info" message="$(string.task_Info)" value="65530"/>
+  <task name="Exit" message="$(string.task_Exit)" value="65532"/>
+  <task name="Enter" message="$(string.task_Enter)" value="65533"/>
+  <task name="EventSourceMessage" message="$(string.task_EventSourceMessage)" value="65534"/>
+ </tasks>
+ <opcodes>
+ </opcodes>
+ <keywords>
+  <keyword name="Default" message="$(string.keyword_Default)" mask="0x1"/>
+  <keyword name="Debug" message="$(string.keyword_Debug)" mask="0x2"/>
+  <keyword name="EnterExit" message="$(string.keyword_EnterExit)" mask="0x4"/>
+  <keyword name="Session3" message="$(string.keyword_Session3)" mask="0x100000000000"/>
+  <keyword name="Session2" message="$(string.keyword_Session2)" mask="0x200000000000"/>
+  <keyword name="Session1" message="$(string.keyword_Session1)" mask="0x400000000000"/>
+  <keyword name="Session0" message="$(string.keyword_Session0)" mask="0x800000000000"/>
+ </keywords>
+ <events>
+  <event value="0" version="0" level="win:LogAlways" symbol="EventSourceMessage" task="EventSourceMessage" template="EventSourceMessageArgs"/>
+  <event value="1" version="0" level="win:Informational" symbol="Enter" keywords="EnterExit" task="Enter" template="EnterArgs"/>
+  <event value="2" version="0" level="win:Informational" symbol="Exit" keywords="EnterExit" task="Exit" template="ExitArgs"/>
+  <event value="4" version="0" level="win:Informational" symbol="Info" keywords="Default" task="Info" template="InfoArgs"/>
+  <event value="5" version="0" level="win:Warning" symbol="ErrorMessage" keywords="Default" task="ErrorMessage" template="ErrorMessageArgs"/>
+  <event value="6" version="0" level="win:Critical" symbol="CriticalFailure" keywords="Debug" task="CriticalFailure" template="CriticalFailureArgs"/>
+ </events>
+ <templates>
+  <template tid="EventSourceMessageArgs">
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="EnterArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="parameters" inType="win:UnicodeString"/>
+  </template>
+  <template tid="ExitArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="result" inType="win:UnicodeString"/>
+  </template>
+  <template tid="InfoArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="ErrorMessageArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+  <template tid="CriticalFailureArgs">
+   <data name="thisOrContextObject" inType="win:UnicodeString"/>
+   <data name="memberName" inType="win:UnicodeString"/>
+   <data name="message" inType="win:UnicodeString"/>
+  </template>
+ </templates>
+</provider>
+</events>
+</instrumentation>
+<localization>
+ <resources culture="en-US">
+  <stringTable>
+   <string id="keyword_Debug" value="Debug"/>
+   <string id="keyword_Default" value="Default"/>
+   <string id="keyword_EnterExit" value="EnterExit"/>
+   <string id="keyword_Session0" value="Session0"/>
+   <string id="keyword_Session1" value="Session1"/>
+   <string id="keyword_Session2" value="Session2"/>
+   <string id="keyword_Session3" value="Session3"/>
+   <string id="task_CriticalFailure" value="CriticalFailure"/>
+   <string id="task_Enter" value="Enter"/>
+   <string id="task_ErrorMessage" value="ErrorMessage"/>
+   <string id="task_EventSourceMessage" value="EventSourceMessage"/>
+   <string id="task_Exit" value="Exit"/>
+   <string id="task_Info" value="Info"/>
+  </stringTable>
+ </resources>
+</localization>
+</instrumentationManifest>

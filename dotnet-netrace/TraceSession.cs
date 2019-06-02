@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using LowLevelDesign.NTrace.EventHandlers;
-using LowLevelDesign.NTrace.EventHandlers.System.Net;
 using LowLevelDesign.NTrace.Utilities;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using PInvoke;
@@ -100,7 +99,7 @@ namespace LowLevelDesign.NTrace
                     processId => { InitializeProcessHandlers(kernelTraceCollector, userTraceCollector, processId, traceOptions); }));
             }
 
-            userTraceCollector.AddHandler(new SystemNetEventHandler(pid, traceOptions.PrintPacketBytes, traceOutput));
+            userTraceCollector.AddHandler(new SystemNetSocketsEventHandler(pid, traceOptions.PrintPacketBytes, traceOutput));
         }
 
         private static void StopCollectors(TraceCollector collector1, TraceCollector collector2)
