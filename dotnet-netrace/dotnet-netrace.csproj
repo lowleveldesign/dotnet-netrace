@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LowLevelDesign.NTrace</RootNamespace>
-    <AssemblyName>ntrace</AssemblyName>
+    <AssemblyName>dotnet-netrace</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -78,6 +78,7 @@
     <Compile Include="EventHandlers\ITraceEventHandler.cs" />
     <Compile Include="EventHandlers\NetworkTraceEventHandler.cs" />
     <Compile Include="EventHandlers\ProcessThreadsTraceEventHandler.cs" />
+    <Compile Include="EventHandlers\System.Diagnostics\SystemDiagnosticsTraceEventParser.cs" />
     <Compile Include="EventHandlers\System.Net\System.Net.Http.dll.cs" />
     <Compile Include="EventHandlers\System.Net\System.Net.HttpListener.dll.cs" />
     <Compile Include="EventHandlers\System.Net\System.Net.Mail.dll.cs" />
@@ -90,8 +91,8 @@
     <Compile Include="EventHandlers\System.Net\System.Net.Sockets.dll.cs" />
     <Compile Include="EventHandlers\System.Net\System.Net.WebHeaderCollection.dll.cs" />
     <Compile Include="EventHandlers\System.Net\System.Net.WebSockets.Client.dll.cs" />
-    <Compile Include="EventHandlers\SystemNetSecurityEventHandler.cs" />
-    <Compile Include="EventHandlers\SystemNetSocketsEventHandler.cs" />
+    <Compile Include="EventHandlers\SystemDiagnosticsTraceEventHandler.cs" />
+    <Compile Include="EventHandlers\SystemNetTraceEventHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraceCollector.cs" />
@@ -103,6 +104,68 @@
     <Compile Include="Utilities\ResourceUtilities.cs" />
     <Compile Include="Utilities\StreamUtilities.cs" />
     <Compile Include="Utilities\SupportFiles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(OutputPath)\NDesk.Options.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Ndesk.Options.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\PInvoke.Windows.Core.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\PInvoke.Windows.Core.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\PInvoke.Kernel32.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\PInvoke.Kernel32.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\Hexify.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Hexify.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\Dia2Lib.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Dia2Lib.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\Microsoft.Diagnostics.FastSerialization.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Microsoft.Diagnostics.FastSerialization.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\OSExtensions.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\OSExtensions.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\Microsoft.Diagnostics.Tracing.TraceEvent.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Microsoft.Diagnostics.Tracing.TraceEvent.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\amd64\KernelTraceControl.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\amd64\KernelTraceControl.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\amd64\msdia140.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\amd64\msdia140.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\x86\KernelTraceControl.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\x86\KernelTraceControl.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)\x86\msdia140.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\x86\msdia140.dll</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

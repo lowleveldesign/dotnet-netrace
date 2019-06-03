@@ -99,7 +99,8 @@ namespace LowLevelDesign.NTrace
                     processId => { InitializeProcessHandlers(kernelTraceCollector, userTraceCollector, processId, traceOptions); }));
             }
 
-            userTraceCollector.AddHandler(new SystemNetSocketsEventHandler(pid, traceOptions.PrintPacketBytes, traceOutput));
+            userTraceCollector.AddHandler(new SystemNetTraceEventHandler(pid, traceOutput, traceOptions.PrintPacketBytes));
+            userTraceCollector.AddHandler(new SystemDiagnosticsTraceEventHandler(pid, traceOutput));
         }
 
         private static void StopCollectors(TraceCollector collector1, TraceCollector collector2)

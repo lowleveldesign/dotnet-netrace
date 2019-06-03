@@ -25,8 +25,8 @@ namespace LowLevelDesign.NTrace
         {
             List<string> procargs = null;
             var showhelp = false;
-            bool spawnNewConsoleWindow = false;
-            TraceSession.TraceOptions traceOptions = new TraceSession.TraceOptions();
+            var spawnNewConsoleWindow = false;
+            var traceOptions = new TraceSession.TraceOptions();
             string eventNameFilter = null;
 
             var p = new OptionSet {
@@ -115,11 +115,11 @@ namespace LowLevelDesign.NTrace
 
         private static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("ntrace v{0} - collects traces of Windows processes",
-                Assembly.GetExecutingAssembly().GetName().Version);
+            var assemblyName = Assembly.GetExecutingAssembly().GetName();
+            Console.WriteLine($"{assemblyName.Name} v{assemblyName.Version} - collects network traces from .NET applications");
             Console.WriteLine("Copyright (C) 2019 Sebastian Solnica (@lowleveldesign)");
             Console.WriteLine();
-            Console.WriteLine("Usage: ntrace [OPTIONS] pid|image-name args");
+            Console.WriteLine($"Usage: {assemblyName.Name} [OPTIONS] pid|image-name args");
             Console.WriteLine();
             Console.WriteLine("Options:");
             p.WriteOptionDescriptions(Console.Out);
