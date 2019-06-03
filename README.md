@@ -163,3 +163,13 @@ PS me> dotnet-netrace.exe 20564
 11167,6929 (20564.23044) Log [23044] Exiting TcpClient#10578254::Dispose()
 11167,7112 (20564.23044) Log [23044] Exiting TcpClient#10578254::Close()
 ```
+
+## Dependencies
+
+This project would not exist without these libraries:
+
+- [Perfview (and Microsoft.Diagnostics.Tracing.TraceEvent)](https://github.com/Microsoft/perfview)
+- [PInvoke](https://github.com/AArnott/pinvoke)
+- [NDesk.Options](https://www.nuget.org/packages/NDesk.Options/)
+
+Thanks!

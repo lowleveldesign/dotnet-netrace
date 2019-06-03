@@ -56,13 +56,12 @@ namespace LowLevelDesign.NTrace
             }
             
             if (traceOptions.TraceChildProcesses && TraceEventSession.IsElevated() != true) {
-                Console.Error.WriteLine("Must elevated (Admin) to trace process children.");
+                Console.Error.WriteLine("Must run elevated (Admin) to trace process children.");
                 return;
             }
 
 
-            Debug.Assert(procargs != null);
-            if (!showhelp && procargs.Count == 0) {
+            if (!showhelp && procargs != null && procargs.Count == 0) {
                 Console.Error.WriteLine("ERROR: please provide either process name or PID");
                 Console.Error.WriteLine();
                 showhelp = true;
