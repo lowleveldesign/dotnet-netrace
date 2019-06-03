@@ -16,7 +16,7 @@ Options:
                                given keyword (case insensitive). Does not
                                impact the summary.
   -b, --bytes                Dump packet bytes to the console.
-  -c, --children             Trace process and all its children.
+  -c, --children             Trace process and all its children. (requires ADMIN)
       --newconsole           Start the process in a new console window.
   -h, --help                 Show this message and exit.
   -?                         Show this message and exit.
@@ -106,33 +106,33 @@ A sample app.config file might look as follows:
 
 ```
 <system.diagnostics>
-    <trace autoflush="true" />
-    <sharedListeners>
-    <sharedListeners>
-      <add name="netrace" initializeData="e4144c8f-cc80-4797-a7cc-cfe14de522ea" type="System.Diagnostics.Eventing.EventProviderTraceListener, System.Core" />
-    </sharedListeners>    </sharedListeners>
-    <sources>
-      <source name="System.Net.Http" switchValue="Verbose">
-        <listeners>
-          <add name="netrace" />
-        </listeners>
-      </source>
-      <source name="System.Net.HttpListener" switchValue="Verbose">
-        <listeners>
-          <add name="netrace" />
-        </listeners>
-      </source>
-      <source name="System.Net" switchValue="Verbose">
-        <listeners>
-          <add name="netrace" />
-        </listeners>
-      </source>
-      <source name="System.Net.Sockets" switchValue="Verbose">
-        <listeners>
-          <add name="netrace" />
-        </listeners>
-      </source>
-    </sources>
+  <trace autoflush="true" />
+  <sharedListeners>
+  <sharedListeners>
+    <add name="netrace" initializeData="e4144c8f-cc80-4797-a7cc-cfe14de522ea" type="System.Diagnostics.Eventing.EventProviderTraceListener, System.Core" />
+  </sharedListeners>
+  <sources>
+    <source name="System.Net.Http" switchValue="Verbose">
+      <listeners>
+        <add name="netrace" />
+      </listeners>
+    </source>
+    <source name="System.Net.HttpListener" switchValue="Verbose">
+      <listeners>
+        <add name="netrace" />
+      </listeners>
+    </source>
+    <source name="System.Net" switchValue="Verbose">
+      <listeners>
+        <add name="netrace" />
+      </listeners>
+    </source>
+    <source name="System.Net.Sockets" switchValue="Verbose">
+      <listeners>
+        <add name="netrace" />
+      </listeners>
+    </source>
+  </sources>
 </system.diagnostics>
 ```
 
