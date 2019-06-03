@@ -106,62 +106,62 @@
     <Compile Include="Utilities\SupportFiles.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(OutputPath)\NDesk.Options.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Ndesk.Options.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\PInvoke.Windows.Core.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\PInvoke.Windows.Core.0.2.1\lib\portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\PInvoke.Windows.Core.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\PInvoke.Kernel32.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\PInvoke.Kernel32.0.2.1\lib\net40\PInvoke.Kernel32.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\PInvoke.Kernel32.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\Hexify.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Hexify.1.1.17004.1\lib\net452\Hexify.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Hexify.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\Dia2Lib.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Dia2Lib.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Dia2Lib.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\Microsoft.Diagnostics.FastSerialization.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.FastSerialization.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.Diagnostics.FastSerialization.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\OSExtensions.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\OSExtensions.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\OSExtensions.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\Microsoft.Diagnostics.Tracing.TraceEvent.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.Diagnostics.Tracing.TraceEvent.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\amd64\KernelTraceControl.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\amd64\KernelTraceControl.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\KernelTraceControl.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\amd64\msdia140.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\amd64\msdia140.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\msdia140.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\x86\KernelTraceControl.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\x86\KernelTraceControl.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\x86\KernelTraceControl.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(OutputPath)\x86\msdia140.dll">
+    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\x86\msdia140.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\x86\msdia140.dll</LogicalName>
