@@ -25,15 +25,6 @@ namespace LowLevelDesign.NTrace.EventHandlers
         {
             var kernel = session.Source.Kernel;
             kernel.ProcessStart += HandleProcessStart;
-            kernel.ThreadStart += HandleThreadStart;
-        }
-
-        private void HandleThreadStart(ThreadTraceData data)
-        {
-            if (data.ProcessID == pid) {
-                traceOutput.Write(data.TimeStampRelativeMSec, data.ProcessID, data.ThreadID, data.EventName,
-                    $"{data.ParentProcessID} ({data.ParentThreadID})");
-            }
         }
 
         private void HandleProcessStart(ProcessTraceData data)
