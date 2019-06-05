@@ -28,6 +28,7 @@ Options:
 
 ```
 PS me> dotnet-netrace.exe 23520
+...
 3128,0142 (23520.22544) Info [Socket#52017160::SetToConnected] now connected
 3128,2324 (23520.22544) Enter [Socket#52017160::InternalSetBlocking] { parameters:desired:True willBlock:True willBlockInternal:True }
 3128,4725 (23520.22544) Info [Socket#52017160::InternalSetBlocking] Interop.Winsock.ioctlsocket returns errorCode:Success
@@ -108,8 +109,7 @@ A sample app.config file might look as follows:
 <system.diagnostics>
   <trace autoflush="true" />
   <sharedListeners>
-  <sharedListeners>
-    <add name="netrace" initializeData="e4144c8f-cc80-4797-a7cc-cfe14de522ea" type="System.Diagnostics.Eventing.EventProviderTraceListener, System.Core" />
+      <add name="netrace" initializeData="e4144c8f-cc80-4797-a7cc-cfe14de522ea" type="System.Diagnostics.Eventing.EventProviderTraceListener, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   </sharedListeners>
   <sources>
     <source name="System.Net.Http" switchValue="Verbose">
@@ -140,6 +140,7 @@ The impact on the performance should be much smaller than when logging to a text
 
 ```
 PS me> dotnet-netrace.exe 20564
+...
 11135,5401 (20564.12616) Log [12616] Entering Socket#258006::Socket()
 11135,5863 (20564.12616) Log [12616] Exiting Socket#258006::Socket()
 11138,4309 (20564.12616) Log [12616] Entering TcpListener#463695::EndAcceptTcpClient()
@@ -162,6 +163,7 @@ PS me> dotnet-netrace.exe 20564
 11167,6693 (20564.23044) Log [23044] Entering TcpClient#10578254::Dispose()
 11167,6929 (20564.23044) Log [23044] Exiting TcpClient#10578254::Dispose()
 11167,7112 (20564.23044) Log [23044] Exiting TcpClient#10578254::Close()
+...
 ```
 
 ## Dependencies
