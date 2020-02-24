@@ -1,187 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\build\Microsoft.Diagnostics.Tracing.TraceEvent.props" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5EB96D66-9A96-400D-990F-54EC962A1843}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LowLevelDesign.NTrace</RootNamespace>
-    <AssemblyName>dotnet-netrace</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>net472;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+    <LangVersion>8</LangVersion>
+    <Nullable>enable</Nullable>
+    <Company>Sebastian Solnica (https://lowleveldesign.org)</Company>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Dia2Lib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Dia2Lib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Hexify, Version=1.1.17004.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Hexify.1.1.17004.1\lib\net452\Hexify.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Diagnostics.FastSerialization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.FastSerialization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent, Version=2.0.42.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NDesk.Options, Version=0.2.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OSExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\OSExtensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PInvoke.Kernel32, Version=0.2.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a">
-      <HintPath>..\packages\PInvoke.Kernel32.0.2.1\lib\net40\PInvoke.Kernel32.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PInvoke.Windows.Core, Version=0.2.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a">
-      <HintPath>..\packages\PInvoke.Windows.Core.0.2.1\lib\portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TraceReloggerLib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\TraceReloggerLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <PackageReference Include="Hexify" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.61701" />
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="2.0.49" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="EventHandlers\ITraceEventHandler.cs" />
-    <Compile Include="EventHandlers\NetworkTraceEventHandler.cs" />
-    <Compile Include="EventHandlers\ProcessThreadsTraceEventHandler.cs" />
-    <Compile Include="EventHandlers\System.Diagnostics\SystemDiagnosticsTraceEventParser.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Http.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.HttpListener.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Mail.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.NameResolution.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.NetworkInformation.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Ping.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Primitives.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Requests.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Security.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.Sockets.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.WebHeaderCollection.dll.cs" />
-    <Compile Include="EventHandlers\System.Net\System.Net.WebSockets.Client.dll.cs" />
-    <Compile Include="EventHandlers\SystemDiagnosticsTraceEventHandler.cs" />
-    <Compile Include="EventHandlers\SystemNetTraceEventHandler.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TraceCollector.cs" />
-    <Compile Include="TraceOutput.cs" />
-    <Compile Include="TraceSession.cs" />
-    <Compile Include="Utilities\DirectoryUtilities.cs" />
-    <Compile Include="Utilities\FileUtilities.cs" />
-    <Compile Include="Utilities\ProcessCreator.cs" />
-    <Compile Include="Utilities\ResourceUtilities.cs" />
-    <Compile Include="Utilities\StreamUtilities.cs" />
-    <Compile Include="Utilities\SupportFiles.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(SolutionDir)packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll">
+
+  <PropertyGroup>
+    <TraceEventPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.tracing.traceevent\2.0.49\lib</TraceEventPackageRootPath>
+    <DiagnosticsClientPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.netcore.client\0.2.61701\lib</DiagnosticsClientPackageRootPath>
+  </PropertyGroup>
+
+  <!-- Create the single binary (only .NET4.7.2) -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+    <EmbeddedResource Include="$(DiagnosticsClientPackageRootPath)\netstandard2.0\Microsoft.Diagnostics.NETCore.Client.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
-      <LogicalName>.\Ndesk.Options.dll</LogicalName>
+      <LogicalName>.\Microsoft.Diagnostics.NETCore.Client.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\PInvoke.Windows.Core.0.2.1\lib\portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\PInvoke.Windows.Core.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\PInvoke.Kernel32.0.2.1\lib\net40\PInvoke.Kernel32.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\PInvoke.Kernel32.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Hexify.1.1.17004.1\lib\net452\Hexify.dll">
+
+    <EmbeddedResource Include="$(NuGetPackageRoot)\hexify\1.2.0\lib\netstandard2.0\Hexify.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Hexify.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Dia2Lib.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Dia2Lib.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.FastSerialization.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Diagnostics.FastSerialization.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\OSExtensions.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\OSExtensions.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Diagnostics.Tracing.TraceEvent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\amd64\KernelTraceControl.dll">
+
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\native\amd64\KernelTraceControl.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\KernelTraceControl.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\amd64\msdia140.dll">
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\native\amd64\msdia140.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\msdia140.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\x86\KernelTraceControl.dll">
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\native\x86\KernelTraceControl.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\x86\KernelTraceControl.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\lib\native\x86\msdia140.dll">
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\native\x86\msdia140.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\x86\msdia140.dll</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\net45\Dia2Lib.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Dia2Lib.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\net45\Microsoft.Diagnostics.FastSerialization.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Microsoft.Diagnostics.FastSerialization.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\net45\OSExtensions.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\OSExtensions.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(TraceEventPackageRootPath)\net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Microsoft.Diagnostics.Tracing.TraceEvent.dll</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.42\build\Microsoft.Diagnostics.Tracing.TraceEvent.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
 </Project>

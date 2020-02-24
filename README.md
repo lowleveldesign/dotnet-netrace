@@ -1,7 +1,7 @@
 
 # .NET network trace (dotnet-netrace)
 
-This application will trace in real-time all the network logs produced by a .NET process. It works on Windows 7+ and requires .NET 4.5.2+. Dotnet-netrace can trace both .NET Core and Full .NET applications. It stops when the traced process exits, or if you issue Ctrl+C in the command line window.
+This application will trace in real-time all the network logs produced by a .NET process. It works on Windows and Linux and requires .NET 4.6.2+. Dotnet-netrace can trace both .NET Core and Full .NET applications. It stops when the traced process exits, or if you issue Ctrl+C in the command line window.
 
 The available options are:
 
@@ -165,13 +165,3 @@ PS me> dotnet-netrace.exe 20564
 11167,7112 (20564.23044) Log [23044] Exiting TcpClient#10578254::Close()
 ...
 ```
-
-## Dependencies
-
-This project would not exist without these libraries:
-
-- [Perfview (and Microsoft.Diagnostics.Tracing.TraceEvent)](https://github.com/Microsoft/perfview)
-- [PInvoke](https://github.com/AArnott/pinvoke)
-- [NDesk.Options](https://www.nuget.org/packages/NDesk.Options/)
-
-Thanks!

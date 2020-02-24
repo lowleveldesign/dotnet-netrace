@@ -1,132 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics;
+using System.Diagnostics.Tracing;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using LowLevelDesign.NTrace.EventHandlers;
-using LowLevelDesign.NTrace.Utilities;
-using Microsoft.Diagnostics.Tracing.Parsers;
-using PInvoke;
-
-// ReSharper disable AccessToDisposedClosure
+using Microsoft.Diagnostics.NETCore.Client;
+using Microsoft.Diagnostics.Tracing;
+using Microsoft.Diagnostics.Tracing.Session;
 
 namespace LowLevelDesign.NTrace
 {
-    internal sealed class TraceSession
+    public sealed class TraceSession
     {
-        public class TraceOptions
-        {
-            public bool PrintPacketBytes { get; set; }
-
-            public bool TraceChildProcesses { get; set; }
-        }
-
         private const string WinTraceUserTraceSessionName = "ntrace-events";
 
-        private readonly ManualResetEvent stopEvent = new ManualResetEvent(false);
+        public sealed class TraceOptions
+        {
+            public bool PrintPacketBytes { get; set; }
+        }
+
+        private readonly CancellationTokenSource cts;
         private readonly ITraceOutput traceOutput;
-        private Action stopTraceCollectors;
 
         public TraceSession(ITraceOutput traceOutput)
         {
             this.traceOutput = traceOutput;
+            cts = new CancellationTokenSource();
         }
 
-        public void TraceNewProcess(IEnumerable<string> procargs, bool spawnNewConsoleWindow, TraceOptions traceOptions)
+        public void TraceNewProcess(string[] procargs, TraceOptions traceOptions)
         {
-            using (var process = new ProcessCreator(procargs) {SpawnNewConsoleWindow = spawnNewConsoleWindow}) {
-                process.StartSuspended();
-
-                using (var kernelTraceCollector = new TraceCollector(KernelTraceEventParser.KernelSessionName))
-                using (var customTraceCollector = new TraceCollector(WinTraceUserTraceSessionName)) {
-                    InitializeProcessHandlers(kernelTraceCollector, customTraceCollector,
-                        process.ProcessId, traceOptions);
-
-                    ThreadPool.QueueUserWorkItem((o) => {
-                        process.Join();
-                        StopCollectors(kernelTraceCollector, customTraceCollector);
-                        stopEvent.Set();
-                    });
-
-                    stopTraceCollectors = () => { StopCollectors(kernelTraceCollector, customTraceCollector); };
-
-                    ThreadPool.QueueUserWorkItem((o) => { kernelTraceCollector.Start(); });
-                    ThreadPool.QueueUserWorkItem((o) => { customTraceCollector.Start(); });
-
-                    Thread.Sleep(1000);
-
-                    // resume thread
-                    process.Resume();
-
-                    stopEvent.WaitOne();
-                }
+            Debug.Assert(procargs.Length >= 1);
+            var startInfo = new ProcessStartInfo(procargs[0],
+                string.Join(" ", procargs, 1, procargs.Length - 1)) {
+                UseShellExecute = false,
+            };
+            var process = Process.Start(startInfo);
+            if (process == null) {
+                throw new ArgumentException("Can't start the process.");
             }
+            var processId = process.Id;
+            process.Close();
+
+            TraceRunningProcess(processId, traceOptions);
         }
 
-        public void TraceRunningProcess(int pid, TraceOptions traceOptions)
+
+        public void TraceRunningProcess(int processId, TraceOptions traceOptions)
         {
-            using (var hProcess = Kernel32.OpenProcess(Kernel32.ACCESS_MASK.StandardRight.SYNCHRONIZE, false, pid)) {
-                if (hProcess.IsInvalid) {
-                    Console.Error.WriteLine("ERROR: the process with a given PID was not found or you don't have access to it.");
-                    return;
+            const int MaxTrialsCount = 5;
+
+            var currentTrial = 0;
+            while (currentTrial < MaxTrialsCount) {
+                using var process = Process.GetProcessById(processId);
+                foreach (var module in process.Modules.Cast<ProcessModule>()) {
+                    if (ClrInfoProvider.IsSupportedRuntime(module, out var clrFlavor, out var platform)) {
+                        Console.WriteLine($"[{processId}] Detected CLR '{clrFlavor}' on platform '{platform}'");
+
+                        Task.Run(() => {
+                            // ReSharper disable once AccessToDisposedClosure
+                            process.WaitForExit();
+                            Console.WriteLine($"[{processId}] Process exited. Closing trace.");
+                            cts.Cancel();
+                        });
+
+                        // blocking wait to collect traces
+                        switch (clrFlavor) {
+                            case ClrFlavor.Core:
+                                TraceDotnetCoreProcess(processId, traceOptions);
+                                break;
+                            default:
+                                Debug.Assert(platform == Platform.Windows);
+                                Debug.Assert(clrFlavor == ClrFlavor.Desktop);
+                                TraceDotnetFullProcess(processId);
+                                break;
+                        }
+
+                        return;
+                    }
                 }
-
-                using (var kernelTraceCollector = new TraceCollector(KernelTraceEventParser.KernelSessionName))
-                using (var userTraceCollector = new TraceCollector(WinTraceUserTraceSessionName)) {
-                    InitializeProcessHandlers(kernelTraceCollector, userTraceCollector,
-                        pid, traceOptions);
-
-                    ThreadPool.QueueUserWorkItem((o) => {
-                        Kernel32.WaitForSingleObject(hProcess, Constants.INFINITE);
-                        StopCollectors(kernelTraceCollector, userTraceCollector);
-                        stopEvent.Set();
-                    });
-
-                    stopTraceCollectors = () => { StopCollectors(kernelTraceCollector, userTraceCollector); };
-
-                    ThreadPool.QueueUserWorkItem((o) => { kernelTraceCollector.Start(); });
-                    ThreadPool.QueueUserWorkItem((o) => { userTraceCollector.Start(); });
-
-                    stopEvent.WaitOne();
-                }
-            }
-        }
-        
-        private void InitializeProcessHandlers(TraceCollector kernelTraceCollector, TraceCollector userTraceCollector,
-            int pid, TraceOptions traceOptions)
-        {
-            //kernelCollector.AddHandler(new NetworkTraceEventHandler(pid, traceOutput));
-            if (traceOptions.TraceChildProcesses) {
-                kernelTraceCollector.AddHandler(new ProcessThreadsTraceEventHandler(pid, traceOutput,
-                    processId => { InitializeProcessHandlers(kernelTraceCollector, userTraceCollector, processId, traceOptions); }));
+                Thread.Sleep(TimeSpan.FromMilliseconds(200));
             }
 
-            userTraceCollector.AddHandler(new SystemNetTraceEventHandler(pid, traceOutput, traceOptions.PrintPacketBytes));
-            userTraceCollector.AddHandler(new SystemDiagnosticsTraceEventHandler(pid, traceOutput));
+            Console.WriteLine($"[{processId}] Cannot attach to the process - it is native or running an unknown CLR version.");
         }
 
-        private static void StopCollectors(TraceCollector collector1, TraceCollector collector2)
+        private void TraceDotnetCoreProcess(int processId, TraceOptions traceOptions)
         {
-            collector1.Stop();
-            collector2.Stop();
+            var client = new DiagnosticsClient(processId);
+
+            var providers = new[] {
+                new EventPipeProvider("Microsoft-System-Net-Sockets", EventLevel.Verbose, keywords: 0xFFFFFFFF)
+            };
+
+            // we are not interested in the rundown events as we only trace network data in real-mode
+            using var eventPipeSession = client.StartEventPipeSession(providers, false, 1024);
+            // ReSharper disable once AccessToDisposedClosure
+            using var reg = cts.Token.Register(() => eventPipeSession.Stop());
+            var eventSource = new EventPipeEventSource(eventPipeSession.EventStream);
+
+            new SystemNetTraceEventHandler(processId, traceOutput,
+                traceOptions.PrintPacketBytes).Subscribe(eventSource);
+            eventSource.Process();
+        }
+
+        private void TraceDotnetFullProcess(int processId)
+        {
+            using var etwSession = new TraceEventSession(WinTraceUserTraceSessionName);
+            // ReSharper disable once AccessToDisposedClosure
+            using var reg = cts.Token.Register(() => etwSession.Stop());
+
+            new SystemDiagnosticsTraceEventHandler(processId, traceOutput).Subscribe(etwSession);
+            etwSession.Source.Process();
         }
 
         public void Stop()
         {
-            if (stopTraceCollectors != null) {
-                stopTraceCollectors();
-                stopTraceCollectors = null;
-            }
-
-            stopEvent.Set();
-        }
-
-        public void Stop(bool overridenPrintSummary)
-        {
-            if (stopTraceCollectors != null) {
-                stopTraceCollectors();
-                stopTraceCollectors = null;
-            }
-
-            stopEvent.Set();
+            cts.Cancel();
         }
     }
 }

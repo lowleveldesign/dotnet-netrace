@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.Tracing;
 using System.Text;
 using LowLevelDesign.Hexify;
+using Microsoft.Diagnostics.NETCore.Client;
 using Microsoft.Diagnostics.Tracing;
-using Parsers = Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
+using EtwParsers = Microsoft.Diagnostics.Tracing.Parsers;
 
 namespace LowLevelDesign.NTrace.EventHandlers
 {
@@ -14,84 +16,105 @@ namespace LowLevelDesign.NTrace.EventHandlers
         private readonly bool printPacketBytes;
         private readonly int outputBytesLimit;
 
-        public Parsers.KernelTraceEventParser.Keywords RequiredKernelFlags => Parsers.KernelTraceEventParser.Keywords.None;
-
         public SystemNetTraceEventHandler(int pid, ITraceOutput output, bool printPacketBytes, int outputBytesLimit = 0)
         {
             traceOutput = output;
             this.pid = pid;
             this.printPacketBytes = printPacketBytes;
             this.outputBytesLimit = outputBytesLimit;
+
+            Providers = new[] {
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpListenerTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetMailTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNameResolutionTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNetworkInformationTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPingTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPrimitivesTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetRequestsTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSecurityTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSocketsTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser.ProviderName, EventLevel.LogAlways),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebSocketsClientTraceEventParser.ProviderName, EventLevel.LogAlways)
+            };
         }
 
-        public void SubscribeToSession(TraceEventSession session)
+        public void Subscribe(TraceEventSource source)
         {
-            TraceEventParser parser = new Parsers.MicrosoftSystemNetHttpTraceEventParser(session.Source);
+            TraceEventParser parser = new EtwParsers.MicrosoftSystemNetHttpTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetHttpTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetHttpListenerTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetHttpListenerTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetHttpListenerTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetMailTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetMailTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetMailTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetNameResolutionTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetNameResolutionTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetNameResolutionTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetNetworkInformationTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetNetworkInformationTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetNetworkInformationTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetPingTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetPingTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetPingTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetPrimitivesTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetPrimitivesTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetPrimitivesTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetRequestsTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetRequestsTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetRequestsTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetSecurityTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetSecurityTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetSecurityTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetSocketsTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetSocketsTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetSocketsTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser.ProviderGuid);
-            
-            parser = new Parsers.MicrosoftSystemNetWebSocketsClientTraceEventParser(session.Source);
+
+            parser = new EtwParsers.MicrosoftSystemNetWebSocketsClientTraceEventParser(source);
             parser.All += OnAll;
-            session.EnableProvider(Parsers.MicrosoftSystemNetWebSocketsClientTraceEventParser.ProviderGuid);
+        }
+
+        public EventPipeProvider[] Providers { get; }
+
+        public void Subscribe(TraceEventSession session)
+        {
+            Subscribe(session.Source);
+
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetHttpTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetHttpListenerTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetMailTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetNameResolutionTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetNetworkInformationTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetPingTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetPrimitivesTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetRequestsTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetSecurityTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetSocketsTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser.ProviderGuid);
+            session.EnableProvider(EtwParsers.MicrosoftSystemNetWebSocketsClientTraceEventParser.ProviderGuid);
         }
 
         private void OnAll(TraceEvent data)
         {
             if (data.ProcessID == pid) {
                 switch (data) {
-                    case Parsers.MicrosoftSystemNetSockets.DumpBufferArgs d:
+                    case EtwParsers.MicrosoftSystemNetSockets.DumpBufferArgs d:
                         DumpPacketBytes(d, d.thisOrContextObject, d.memberName, d.buffer);
                         break;
-                    case Parsers.MicrosoftSystemNetSecurity.DumpBufferArgs d:
+                    case EtwParsers.MicrosoftSystemNetSecurity.DumpBufferArgs d:
                         DumpPacketBytes(d, d.thisOrContextObject, d.memberName, d.buffer);
                         break;
-                    case Parsers.MicrosoftSystemNetHttpListener.DumpBufferArgs d:
+                    case EtwParsers.MicrosoftSystemNetHttpListener.DumpBufferArgs d:
                         DumpPacketBytes(d, d.thisOrContextObject, d.memberName, d.buffer);
                         break;
-                    case Parsers.MicrosoftSystemNetNetworkInformation.DumpBufferArgs d:
+                    case EtwParsers.MicrosoftSystemNetNetworkInformation.DumpBufferArgs d:
                         DumpPacketBytes(d, d.thisOrContextObject, d.memberName, d.buffer);
                         break;
-                    case Parsers.MicrosoftSystemNetPing.DumpBufferArgs d:
+                    case EtwParsers.MicrosoftSystemNetPing.DumpBufferArgs d:
                         DumpPacketBytes(d, d.thisOrContextObject, d.memberName, d.buffer);
                         break;
                     default:
@@ -120,7 +143,7 @@ namespace LowLevelDesign.NTrace.EventHandlers
             const int HttpClient = HttpResponse + 1;
             const int Socket = HttpClient + 1;
             const int SecureChannel = Socket + 1;
-            
+
             var buffer = new StringBuilder();
             var indexes = new int[SecureChannel + 1];
             indexes[Message] = data.PayloadIndex("message");

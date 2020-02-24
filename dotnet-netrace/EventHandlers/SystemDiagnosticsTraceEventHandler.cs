@@ -1,4 +1,6 @@
-﻿using LowLevelDesign.NTrace.EventHandlers.System.Diagnostics;
+﻿using System.Diagnostics.Tracing;
+using LowLevelDesign.NTrace.Parsers;
+using Microsoft.Diagnostics.NETCore.Client;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
@@ -16,12 +18,24 @@ namespace LowLevelDesign.NTrace.EventHandlers
         {
             traceOutput = output;
             this.pid = pid;
+            
+            Providers = new [] {
+                new EventPipeProvider(SystemDiagnosticsTraceEventParser.ProviderName, EventLevel.LogAlways),
+            };
         }
 
-        public void SubscribeToSession(TraceEventSession session)
+        public void Subscribe(TraceEventSource source)
         {
-            var parser = new SystemDiagnosticsTraceEventParser(session.Source);
+            var parser = new SystemDiagnosticsTraceEventParser(source);
             parser.ReceiveLog += OnReceiveLog;
+        }
+
+        public EventPipeProvider[] Providers { get; }
+
+        public void Subscribe(TraceEventSession session)
+        {
+            Subscribe(session.Source);
+            
             session.EnableProvider(SystemDiagnosticsTraceEventParser.ProviderGuid, TraceEventLevel.Always, 0xFFFFFFFF);
         }
 

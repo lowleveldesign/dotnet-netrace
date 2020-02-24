@@ -1,7 +1,9 @@
+#nullable disable
+
 using System;
 using Microsoft.Diagnostics.Tracing;
 
-namespace LowLevelDesign.NTrace.EventHandlers.System.Diagnostics
+namespace LowLevelDesign.NTrace.Parsers
 {
     public sealed class SystemDiagnosticsTraceEventParser : TraceEventParser
     {

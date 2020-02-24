@@ -1,11 +1,3 @@
-// This file is best viewed using outline mode (Ctrl-M Ctrl-O)
-//
-//	Copyright (C) 2007 Microsoft Corporation.  All Rights Reserved.
-//
-// This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
-// It is available from http://www.codeplex.com/hyperAddin 
-// 
-
 using System.IO;
 
 namespace LowLevelDesign.NTrace.Utilities

@@ -6,12 +6,13 @@
 /* AUTHOR: Vance Morrison   
  * Date  : 10/20/2007  */
 /****************************************************************************/
+
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.Diagnostics.Utilities
+// ReSharper disable All
+namespace LowLevelDesign.NTrace.Utilities
 {
     /******************************************************************************/
     /// <summary>
@@ -96,8 +97,8 @@ namespace Microsoft.Diagnostics.Utilities
         /// Removes the oldest directories directly under 'directoryPath' so that 
         /// only 'numberToKeep' are left. 
         /// </summary>
-        /// <param variable="directoryPath">Directory to removed old files from.</param>
-        /// <param variable="numberToKeep">The number of files to keep.</param>
+        /// <param name="directoryPath">Directory to removed old files from.</param>
+        /// <param name="numberToKeep">The number of files to keep.</param>
         /// <returns> true if there were no errors deleting files</returns>
         public static bool DeleteOldest(string directoryPath, int numberToKeep)
         {
@@ -140,11 +141,11 @@ namespace Microsoft.Diagnostics.Utilities
         ///     foreach(string fileName in DirectoryUtilities.GetFiles("c:\", "*.txt")){
         ///         Console.WriteLine(fileName);
         ///     }
-        ///
+        /// 
         /// </summary>
-        /// <param variable="directoryPath">The base directory to enumerate</param>
-        /// <param variable="searchPattern">A pattern to filter the names (windows filename wildcards * ?)</param>
-        /// <param variable="searchOptions">Indicate if the search is recursive or not.  </param>
+        /// <param name="directoryPath">The base directory to enumerate</param>
+        /// <param name="searchPattern">A pattern to filter the names (windows filename wildcards * ?)</param>
+        /// <param name="searchOptions">Indicate if the search is recursive or not.  </param>
         /// <returns>The enumerator for all archiveFile names in the directory (recursively). </returns>
         public static IEnumerable<string> GetFiles(string directoryPath, string searchPattern, SearchOption searchOptions)
         {

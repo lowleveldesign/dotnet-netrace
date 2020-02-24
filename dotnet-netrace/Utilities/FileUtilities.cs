@@ -6,12 +6,14 @@
 /* AUTHOR: Vance Morrison   
  * Date  : 10/20/2007  */
 /****************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.Diagnostics.Utilities
+// ReSharper disable All
+namespace LowLevelDesign.NTrace.Utilities
 {
     /******************************************************************************/
     /// <summary>
@@ -23,29 +25,6 @@ namespace Microsoft.Diagnostics.Utilities
     static class FileUtilities
     {
         /// <summary>
-        /// GetLines works much like File.ReadAllLines, however instead of returning a
-        /// array of lines, it returns a IEnumerable so that the archiveFile is not read all
-        /// at once.  This allows 'foreach' syntax to be used on very large files.  
-        /// 
-        /// Suggested Usage
-        /// 
-        ///     foreach(string lineNumber in FileUtilities.GetLines("largeFile.txt")){
-        ///         Console.WriteLine(lineNumber);
-        ///     }
-        /// </summary>
-        /// <param variable="fileName">The base directory to enumerate.</param>
-        /// <returns>The enumerator for all lines in the archiveFile.</returns>
-        public static IEnumerable<string> ReadAllLines(string fileName)
-        {
-            StreamReader stream = File.OpenText(fileName);
-            while (!stream.EndOfStream)
-            {
-                yield return stream.ReadLine();
-            }
-            stream.Dispose();
-        }
-
-        /// <summary>
         /// Given archiveFile specifications possibly with wildcards in them
         /// Returns an enumerator that returns each expanded archiveFile name in turn. 
         /// 
@@ -55,7 +34,7 @@ namespace Microsoft.Diagnostics.Utilities
         {
             foreach (string fileSpec in fileSpecifications)
             {
-                string dir = Path.GetDirectoryName(fileSpec);
+                string dir = Path.GetDirectoryName(fileSpec) ?? "";
                 if (dir.Length == 0)
                     dir = ".";
                 string file = Path.GetFileName(fileSpec);
@@ -75,7 +54,7 @@ namespace Microsoft.Diagnostics.Utilities
         /// It returns true if it was completely successful.  If there is a *.deleting
         /// archiveFile left behind, it returns false. 
         /// </summary>
-        /// <param variable="fileName">The variable of the archiveFile to delete</param>
+        /// <param name="fileName">The variable of the archiveFile to delete</param>
         public static bool ForceDelete(string fileName)
         {
             if (Directory.Exists(fileName))

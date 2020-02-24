@@ -1,12 +1,15 @@
-﻿using Microsoft.Diagnostics.Tracing.Parsers;
+﻿using Microsoft.Diagnostics.NETCore.Client;
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Session;
 
 namespace LowLevelDesign.NTrace.EventHandlers
 {
     public interface ITraceEventHandler
     {
-        KernelTraceEventParser.Keywords RequiredKernelFlags { get; }
-
-        void SubscribeToSession(TraceEventSession session); 
+        EventPipeProvider[] Providers { get; }
+        
+        void Subscribe(TraceEventSource source); 
+        
+        void Subscribe(TraceEventSession session); 
     }
 }

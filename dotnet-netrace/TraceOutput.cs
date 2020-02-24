@@ -2,7 +2,7 @@
 
 namespace LowLevelDesign.NTrace
 {
-    internal interface ITraceOutput
+    public interface ITraceOutput
     {
         void Write(double timeStampRelativeInMSec, int processId, int threadId, string eventName, string details);
     }

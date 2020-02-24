@@ -1,10 +1,12 @@
-﻿using System;
+﻿// ReSharper disable All
+// TODO: would be nice to remove all the nullable warnings
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Microsoft.Diagnostics.Utilities;
-// ReSharper disable All
 
 namespace LowLevelDesign.NTrace.Utilities
 {
