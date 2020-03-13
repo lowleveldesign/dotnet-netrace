@@ -1,30 +1,27 @@
 
 # .NET network trace (dotnet-netrace)
 
-This application will trace in real-time all the network logs produced by a .NET process. It works on Windows and Linux and requires .NET 4.6.2+. Dotnet-netrace can trace both .NET Core and Full .NET applications. It stops when the traced process exits, or if you issue Ctrl+C in the command line window.
+This application will trace in real-time all the network logs produced by a .NET process. It works on Windows and Linux and requires .NET 4.7.2+ or .NET Core 2.1+. Dotnet-netrace can trace both .NET Core and Full .NET applications. It stops when the traced process exits, or if you issue Ctrl+C in the command line window.
 
 The available options are:
 
 ```
-dotnet-netrace v1.0.19154.4 - collects network traces from .NET applications
-Copyright (C) 2019 Sebastian Solnica (@lowleveldesign)
+dotnet-netrace v2.0.20073.7 - collects network traces from .NET applications
+Copyright (C) 2020 Sebastian Solnica (https://lowleveldesign.org)
 
 Usage: dotnet-netrace [OPTIONS] pid|image-name args
 
 Options:
-  -f, --filter=VALUE         Display only events which names contain the
-                               given keyword (case insensitive). Does not
-                               impact the summary.
-  -b, --bytes                Dump packet bytes to the console.
-  -c, --children             Trace process and all its children. (requires ADMIN)
-      --newconsole           Start the process in a new console window.
-  -h, --help                 Show this message and exit.
-  -?                         Show this message and exit.
-```
+ -f, --filter=VALUE    Display only events which names contain the given keyword (case insensitive).
+                       Does not impact the summary.
+ -b, --bytes           Dump packet bytes to the console.
+ -h, --help            Show this message and exit.
+ -?                    Show this message and exit.
+ ``` 
 
 ## .NET Core
 
-.NET Core network logs are produced by a set of [**dynamic ETW providers**](https://github.com/dotnet/corefx/blob/master/Documentation/debugging/windows-instructions.md#systemnet-namespaces). Dotnet-netrace listens to all of them and dumps events in the console output. A trace for a simple ASP.NET Core application might look as follows:
+.NET Core network logs are produced by a set of [**event providers**](https://github.com/dotnet/corefx/blob/master/Documentation/debugging/windows-instructions.md#systemnet-namespaces). Dotnet-netrace listens to all of them and dumps events in the console output. A trace for a simple ASP.NET Core application might look as follows:
 
 ```
 PS me> dotnet-netrace.exe 23520
