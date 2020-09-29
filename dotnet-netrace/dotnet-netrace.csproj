@@ -39,19 +39,19 @@
       <LogicalName>.\Hexify.dll</LogicalName>
     </EmbeddedResource>
 
-    <EmbeddedResource Include="$(NuGetPackageRoot)\microsoft.bcl.asyncinterfaces\1.1.1\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
+    <EmbeddedResource Include="$(NuGetPackageRoot)\microsoft.bcl.asyncinterfaces\1.1.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.Bcl.AsyncInterfaces.dll</LogicalName>
     </EmbeddedResource>
     
-    <EmbeddedResource Include="$(NuGetPackageRoot)\system.threading.tasks.extensions\4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll">
+    <EmbeddedResource Include="$(NuGetPackageRoot)\system.threading.tasks.extensions\4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\System.Threading.Tasks.Extensions.dll</LogicalName>
     </EmbeddedResource>
     
-    <EmbeddedResource Include="$(NuGetPackageRoot)\system.runtime.compilerservices.unsafe\4.7.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+    <EmbeddedResource Include="$(NuGetPackageRoot)\system.runtime.compilerservices.unsafe\4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\System.Runtime.CompilerServices.Unsafe.dll</LogicalName>
