@@ -37,7 +37,8 @@ namespace LowLevelDesign.NTrace
                 UseShellExecute = false,
             };
             var process = Process.Start(startInfo);
-            if (process == null) {
+            if (process == null)
+            {
                 throw new ArgumentException("Can't start the process.");
             }
             var processId = process.Id;
@@ -52,10 +53,13 @@ namespace LowLevelDesign.NTrace
             const int MaxTrialsCount = 5;
 
             var currentTrial = 0;
-            while (currentTrial < MaxTrialsCount) {
+            while (currentTrial < MaxTrialsCount)
+            {
                 using var process = Process.GetProcessById(processId);
-                foreach (var module in process.Modules.Cast<ProcessModule>()) {
-                    if (ClrInfoProvider.IsSupportedRuntime(module, out var clrFlavor, out var platform)) {
+                foreach (var module in process.Modules.Cast<ProcessModule>())
+                {
+                    if (ClrInfoProvider.IsSupportedRuntime(module, out var clrFlavor, out var platform))
+                    {
                         Console.WriteLine($"[{processId}] Detected CLR '{clrFlavor}' on platform '{platform}'");
 
                         Task.Run(() => {
@@ -66,7 +70,8 @@ namespace LowLevelDesign.NTrace
                         });
 
                         // blocking wait to collect traces
-                        switch (clrFlavor) {
+                        switch (clrFlavor)
+                        {
                             case ClrFlavor.Core:
                                 TraceDotnetCoreProcess(processId, traceOptions);
                                 break;
@@ -95,11 +100,19 @@ namespace LowLevelDesign.NTrace
             // we are not interested in the rundown events as we only trace network data in real-mode
             using var eventPipeSession = client.StartEventPipeSession(handler.Providers, false, 1024);
             // ReSharper disable once AccessToDisposedClosure
-            using var reg = cts.Token.Register(() => eventPipeSession.Stop());
             var eventSource = new EventPipeEventSource(eventPipeSession.EventStream);
 
+            using var reg = cts.Token.Register(() => eventPipeSession.Stop());
+
             handler.Subscribe(eventSource);
-            eventSource.Process();
+            try
+            {
+                eventSource.Process();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[{processId}] The destination process has been abruptly stopped: {ex.Message}.");
+            }
         }
 
         private void TraceDotnetFullProcess(int processId)

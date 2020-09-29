@@ -1,8 +1,7 @@
 {
   "profiles": {
     "dotnet-netrace": {
-      "commandName": "Project",
-      "commandLineArgs": "4320"
+      "commandName": "Project"
     }
   }
 }
