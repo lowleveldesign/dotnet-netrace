@@ -8,8 +8,8 @@
     <Company>Sebastian Solnica (https://lowleveldesign.org)</Company>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
