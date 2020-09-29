@@ -13,7 +13,7 @@ namespace LowLevelDesign.NTrace
         [STAThread()]
         public static void Main(string[] args)
         {
-            if (string.Equals(".NET Framework", RuntimeInformation.FrameworkDescription, StringComparison.Ordinal)) {
+            if ((RuntimeInformation.FrameworkDescription ?? "").Contains(".NET Framework")) {
                 Unpack();
             }
 

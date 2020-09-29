@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-netrace", "dotnet-netrace\dotnet-netrace.csproj", "{A71C4A11-287B-406C-A06C-21E25E5804C3}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-netrace", "dotnet-netrace\dotnet-netrace.csproj", "{A71C4A11-287B-406C-A06C-21E25E5804C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +11,15 @@ Global
 		Release|AnyCPU = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
-		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
-		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
-		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{A71C4A11-287B-406C-A06C-21E25E5804C3}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39FE814A-A3EC-4080-891C-D047F813EB94}
 	EndGlobalSection
 EndGlobal

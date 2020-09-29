@@ -16,13 +16,13 @@
 
   <ItemGroup>
     <PackageReference Include="Hexify" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.61701" />
-    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="2.0.49" />
+    <PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.141901" />
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="2.0.61" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TraceEventPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.tracing.traceevent\2.0.49\lib</TraceEventPackageRootPath>
-    <DiagnosticsClientPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.netcore.client\0.2.61701\lib</DiagnosticsClientPackageRootPath>
+    <TraceEventPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.tracing.traceevent\2.0.61\lib</TraceEventPackageRootPath>
+    <DiagnosticsClientPackageRootPath>$(NuGetPackageRoot)\microsoft.diagnostics.netcore.client\0.2.141901\lib</DiagnosticsClientPackageRootPath>
   </PropertyGroup>
 
   <!-- Create the single binary (only .NET4.7.2) -->
@@ -39,6 +39,24 @@
       <LogicalName>.\Hexify.dll</LogicalName>
     </EmbeddedResource>
 
+    <EmbeddedResource Include="$(NuGetPackageRoot)\microsoft.bcl.asyncinterfaces\1.1.1\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\Microsoft.Bcl.AsyncInterfaces.dll</LogicalName>
+    </EmbeddedResource>
+    
+    <EmbeddedResource Include="$(NuGetPackageRoot)\system.threading.tasks.extensions\4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\System.Threading.Tasks.Extensions.dll</LogicalName>
+    </EmbeddedResource>
+    
+    <EmbeddedResource Include="$(NuGetPackageRoot)\system.runtime.compilerservices.unsafe\4.7.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\System.Runtime.CompilerServices.Unsafe.dll</LogicalName>
+    </EmbeddedResource>
+    
     <EmbeddedResource Include="$(TraceEventPackageRootPath)\native\amd64\KernelTraceControl.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>

@@ -24,18 +24,18 @@ namespace LowLevelDesign.NTrace.EventHandlers
             this.outputBytesLimit = outputBytesLimit;
 
             Providers = new[] {
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpListenerTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetMailTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNameResolutionTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNetworkInformationTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPingTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPrimitivesTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetRequestsTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSecurityTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSocketsTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser.ProviderName, EventLevel.LogAlways),
-                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebSocketsClientTraceEventParser.ProviderName, EventLevel.LogAlways)
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetHttpListenerTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetMailTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNameResolutionTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetNetworkInformationTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPingTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetPrimitivesTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetRequestsTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSecurityTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetSocketsTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebHeaderCollectionTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF),
+                new EventPipeProvider(EtwParsers.MicrosoftSystemNetWebSocketsClientTraceEventParser.ProviderName, EventLevel.Verbose, 0xFFFFFFFF)
             };
         }
 

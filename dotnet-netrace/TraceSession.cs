@@ -90,18 +90,15 @@ namespace LowLevelDesign.NTrace
         {
             var client = new DiagnosticsClient(processId);
 
-            var providers = new[] {
-                new EventPipeProvider("Microsoft-System-Net-Sockets", EventLevel.Verbose, keywords: 0xFFFFFFFF)
-            };
+            var handler = new SystemNetTraceEventHandler(processId, traceOutput, traceOptions.PrintPacketBytes);
 
             // we are not interested in the rundown events as we only trace network data in real-mode
-            using var eventPipeSession = client.StartEventPipeSession(providers, false, 1024);
+            using var eventPipeSession = client.StartEventPipeSession(handler.Providers, false, 1024);
             // ReSharper disable once AccessToDisposedClosure
             using var reg = cts.Token.Register(() => eventPipeSession.Stop());
             var eventSource = new EventPipeEventSource(eventPipeSession.EventStream);
 
-            new SystemNetTraceEventHandler(processId, traceOutput,
-                traceOptions.PrintPacketBytes).Subscribe(eventSource);
+            handler.Subscribe(eventSource);
             eventSource.Process();
         }
 
