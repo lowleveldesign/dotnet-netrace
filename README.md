@@ -1,4 +1,6 @@
 
+:exclamation: **NOTE: This repository is archived and I don't plan to update it. Please use my other tool, [dotnet-wtrace](https://github.com/lowleveldesign/dotnet-wtrace), which  replaces most of dotnet-netrace features and supports many more events.** :exclamation:
+
 # .NET network trace (dotnet-netrace)
 
 This application will trace in real-time all the network logs produced by a .NET process. It works on Windows and Linux and requires .NET 4.7.2+ or .NET Core 2.1+. Dotnet-netrace can trace both .NET Core and Full .NET applications. It stops when the traced process exits, or if you issue Ctrl+C in the command line window.
